@@ -6,6 +6,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    if cookies["_the_guild_session"].present?
+      redirect_to root_path
+    end
     @member = Member.new
     @user = User.new
     p "IJOGRDFGRKL; DLGCDR;L;GHLKHCDT;,LFTHD;,FTH;,I"
@@ -13,39 +16,43 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    p "\n"
-    p "\n"
-    p member_params
-    @member = Member.new(member_params.except(:profile))
+    @member = Member.new(member_params)
     @user = User.new(user_params.except(:member))
-    p @member
-    p @user
-    # p "IJOGRDFGRKL; DLGCDR;L;GHLKHCDT;,LFTHD;,FTH;,I"
+    @member.user = @user
+
+    if @user.valid? && @member.valid? # Check validity of both before trying to save both, because if either are invalid we don't want to save either
+      @user.save
+      @member.save
+      sign_in(@user)
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,
   # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
+  def cancel
+    super
+  end
 
   protected
 
