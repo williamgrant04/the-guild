@@ -3,8 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: "users/sessions"
   }
-  root to: 'guilds#show'
-  resources :guilds, except: %i[destroy]
+  resources :guilds, except: %i[destroy index]
   # *Modals
   # For the modals, write custom paths following the below pattern
   # get "modals/test", to: "modals#test"

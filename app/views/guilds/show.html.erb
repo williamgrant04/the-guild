@@ -1,1 +1,42 @@
-<p>it works !</p>
+<%# WE NEED A PARTIAL NAVBAR %>
+<%# WE NEED A PARTIAL SIDEBAR MENU %>
+<div class="container">
+  <div class="tabs d-flex">
+    <div class="members-tab">
+    <h2>Members</h2>
+    </div>
+  <div class="chat-tab">
+    <h2>Chat</h2>
+  </div>
+  <div class="events-tab">
+    <h2>Events</h2>
+  </div>
+  </div>
+      <%# begigining of the accordion %>
+      <%# for each member do  %>
+      <div class="accordion-container bg-primary">
+        <div class="accordion w-100 justify-center" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <img src="#" alt="member_profile_pic">
+                <p>Username</p>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                <%# for each games the guild member plays do%>
+                  <li class="d-flex justify-between">
+                    <p>game</p><p>in-game name</p>
+                  </li>
+                  <%# end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%# end %>
+      <%# end of accordion %>
+</div>
