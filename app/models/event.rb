@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  has_many :event_members
+  has_many :members, through: :event_members
+
   # Event name validations
   validates :name, presence: true
 
