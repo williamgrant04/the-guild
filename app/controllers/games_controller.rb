@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game
+  before_action :set_guild
 
   def new
     @game = Game.new
@@ -7,10 +7,10 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    @game.guild = Guild.find(params[:guild_id])
+    @game.guild = @guild
 
     if @game.save
-      redirect_to guild_path(params[:guild_id])
+      redirect_to guild_path @guild
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
   private
 
-  def set_game
+  def set_guild
     @guild = Guild.find(params[:guild_id])
   end
 
