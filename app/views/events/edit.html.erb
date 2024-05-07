@@ -1,0 +1,23 @@
+<%# This page is just to test event controller. New action wont exist while calling modal. Modal loads form and calls create action %>
+
+<div class="container mt-4">
+  <%= simple_form_for(@event) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%# This format sucks...maybe we use flatpickr again? %>
+    <%= f.input :start %>
+    <%= f.input :end %>
+    <%= f.button :submit %>
+  <% end %>
+    <%# this renders a monthly calendar, @events is all events %>
+    <%= month_calendar(attribute: :start, end_attribute: :end, events: @all_events) do |date, events| %>
+      <%= date %>
+      <%# This itterates over the events and puts them on the day if it is contained in the start and end  %>
+      <% events.each do |event| %>
+      <div>
+        <p><%= link_to event.name, edit_event_path(event) %><br>
+        <%= event.start.strftime("%H:%M") %> - <%= event.end.strftime("%H:%M") %></p>
+      </div>
+      <% end %>
+    <% end %>
+</div>
