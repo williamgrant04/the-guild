@@ -4,5 +4,8 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
 
-  get "modals/test", to: "modals#test"
+
+  # *Modals
+  # For the modals, write custom paths following the below pattern
+  # get "modals/test", to: "modals#test"
 end
