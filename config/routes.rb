@@ -3,4 +3,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: "users/sessions"
   }
+  root to: 'guilds#show'
+  resources :guilds, except: %i[destroy]
 end
