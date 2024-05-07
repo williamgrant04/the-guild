@@ -5,6 +5,9 @@ class Guild < ApplicationRecord
   has_many :members
   has_many :games
   has_many :events
+
+  belongs_to :owner, class_name: 'Member', foreign_key: 'member_id'
+
   has_one_attached :image
   has_one_attached :icon
   # validations

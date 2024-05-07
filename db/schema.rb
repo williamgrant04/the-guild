@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_100326) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_123824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_100326) do
     t.string "join_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "member_id", null: false
+    t.index ["member_id"], name: "index_guilds_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -121,5 +123,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_100326) do
   add_foreign_key "game_members", "games"
   add_foreign_key "game_members", "members"
   add_foreign_key "games", "guilds"
+  add_foreign_key "guilds", "members"
   add_foreign_key "members", "users"
 end
