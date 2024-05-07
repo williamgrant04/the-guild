@@ -1,10 +1,13 @@
 class Guild < ApplicationRecord
   # conditions
-  before_save :generate_code
+  before_validation :generate_code
   # associations
   has_many :members
   has_many :games
   has_many :events
+
+  belongs_to :owner, class_name: 'Member', foreign_key: 'member_id'
+
   has_one_attached :image
   has_one_attached :icon
   # validations
@@ -15,7 +18,7 @@ class Guild < ApplicationRecord
   protected
 
   def generate_code
-    self.code = loop do
+    self.join_code = loop do
       random_code = SecureRandom.urlsafe_base64(18)
       break random_code unless Guild.exists?(join_code: random_code)
     end
