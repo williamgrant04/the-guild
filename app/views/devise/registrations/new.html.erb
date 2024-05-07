@@ -1,30 +1,38 @@
 <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+  <%= form.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :username, required: true %>
+    <%# This is because of the devise and member split, so sign-up requires both models %>
+    <%= form.simple_fields_for :member do |member| %>
+      <% if @member.errors.any? %>
+        <%= member.input :username, required: true, hint: "#{@member.errors.full_messages_for(:username)[0]}" %>
+        <%= member.input :profile_image, as: :file, hint: "#{@member.errors.full_messages_for(:profile_image)[0]}" %>
+      <% else %>
+        <%= member.input :username, required: true %>
+        <%= member.input :profile_image, as: :file %>
+      <% end %>
+    <% end %>
 
-    <%= f.input :email,
+    <%= form.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
 
-    <%= f.input :profile_image, as: :file %>
 
-    <%= f.input :password,
+    <%= form.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-                
-    <%= f.input :password_confirmation,
+
+    <%= form.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= form.button :submit, "Sign up" %>
   </div>
 <% end %>
 
