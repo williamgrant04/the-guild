@@ -7,11 +7,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     if cookies["_the_guild_session"].present?
-      redirect_to root_path
+      # redirect_to root_path
     end
     @member = Member.new
     @user = User.new
-    p "IJOGRDFGRKL; DLGCDR;L;GHLKHCDT;,LFTHD;,FTH;,I"
+    @member.user = @user
   end
 
   # POST /resource
@@ -21,10 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @member.user = @user
 
     if @user.valid? && @member.valid? # Check validity of both before trying to save both, because if either are invalid we don't want to save either
-      @user.save
-      @member.save
-      sign_in(@user)
-      redirect_to root_path
+      if @user.save && @member.save
+        sign_in(@user)
+        # redirect_to root_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
