@@ -16,7 +16,7 @@
       <% events.each do |event| %>
       <div>
         <p><%= link_to event.name, edit_event_path(event) %><br>
-        <%= event.start.strftime("%H:%M") %> - <%= H:%event.end.strftime("%M") %></p>
+        <%= event.start.strftime("%H:%M") %> - <%= event.end.strftime("%H:%M") %></p>
       </div>
       <% end %>
     <% end %>
