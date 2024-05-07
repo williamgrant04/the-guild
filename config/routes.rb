@@ -3,4 +3,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: "users/sessions"
   }
+
+  get "modals/test", to: "modals#test"
 end
