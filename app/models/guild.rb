@@ -15,10 +15,9 @@ class Guild < ApplicationRecord
   protected
 
   def generate_code
-    code = SecureRandom.urlsafe_base64(18)
-    if Guild.find_by(join_code: code)
-      code = SecureRandom.urlsafe_base64(18)
+    self.join_code = loop do
+      random_code = SecureRandom.urlsafe_base64(18)
+      break random_code unless Guild.exists?(join_code: random_code)
     end
-    self.join_code = code
   end
 end
