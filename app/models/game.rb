@@ -7,5 +7,5 @@ class Game < ApplicationRecord
   has_one_attached :game_icon
 
   validates :name, uniqueness: { scope: :guild_id }
-  validates :game_icon, presence: true
+  validates :game_icon, :name presence: true
 end
