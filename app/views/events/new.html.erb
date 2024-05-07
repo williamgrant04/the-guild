@@ -5,8 +5,8 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%# This format sucks...maybe we use flatpickr again? %>
-    <%= f.input :start %>
-    <%= f.input :end %>
+    <%= f.input :start, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field" %>
+    <%= f.input :end, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field" %>
     <%= f.button :submit %>
   <% end %>
     <%# this renders a monthly calendar, @events is all events %>
@@ -16,7 +16,7 @@
       <% events.each do |event| %>
       <div>
         <p><%= link_to event.name, edit_event_path(event) %><br>
-        <%= event.start.strftime("%H:%M") %> - <%= event.end.strftime("%H:%M") %></p>
+        <%= event.start.strftime("%H:%M") %> - <%= H:%event.end.strftime("%M") %></p>
       </div>
       <% end %>
     <% end %>
