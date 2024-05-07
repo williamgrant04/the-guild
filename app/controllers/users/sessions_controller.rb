@@ -5,10 +5,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    if cookies["_the_guild_session"].present?
-      redirect_to root_path
-      return
-    end
+    # if cookies["_the_guild_session"].present?
+    #   redirect_to root_path
+    #   return
+    # end
     super
   end
 
