@@ -4,10 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "root" ]
 
-  connect() {
-    console.log("eat");
-  }
-
   show() {
     fetch(`modals/${this.rootTarget.dataset.modal}`)
       .then(res => res.text())
