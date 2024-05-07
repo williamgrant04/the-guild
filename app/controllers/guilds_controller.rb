@@ -32,6 +32,11 @@ class GuildsController < ApplicationController
     end
   end
 
+  def invite
+    @member = current_user
+    @guild = Guild.find(params[:id])
+  end
+
   private
 
   def guild_params
