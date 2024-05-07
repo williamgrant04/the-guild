@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_210404) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_123824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,57 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_210404) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "event_members", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_members_on_event_id"
+    t.index ["member_id"], name: "index_event_members_on_member_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "start", null: false
+    t.datetime "end", null: false
+    t.bigint "game_id"
+    t.bigint "guild_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_events_on_game_id"
+    t.index ["guild_id"], name: "index_events_on_guild_id"
+  end
+
+  create_table "game_members", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "game_id", null: false
+    t.text "details"
+    t.string "member_game_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_members_on_game_id"
+    t.index ["member_id"], name: "index_game_members_on_member_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "guild_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_games_on_guild_id"
+  end
+
+  create_table "guilds", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "join_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "member_id", null: false
+    t.index ["member_id"], name: "index_guilds_on_member_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "username"
     t.string "role"
@@ -65,5 +116,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_210404) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "event_members", "events"
+  add_foreign_key "event_members", "members"
+  add_foreign_key "events", "games"
+  add_foreign_key "events", "guilds"
+  add_foreign_key "game_members", "games"
+  add_foreign_key "game_members", "members"
+  add_foreign_key "games", "guilds"
+  add_foreign_key "guilds", "members"
   add_foreign_key "members", "users"
 end
