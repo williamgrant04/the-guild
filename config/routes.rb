@@ -3,5 +3,4 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: "users/sessions"
   }
-  resources :games, only: %i[new show]
 end
