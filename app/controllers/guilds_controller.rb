@@ -26,9 +26,9 @@ class GuildsController < ApplicationController
   end
 
   def update
-    authorize @guild
     @member = current_user
     @guild = Guild.find(params[:id])
+    authorize @guild
     if @guild.update(guild_params)
       flash[:success] = 'Guild updated!'
       redirect_to guild_path(@guild)
