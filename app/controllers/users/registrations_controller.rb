@@ -16,15 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @member = Member.new(member_params)
-    @user = User.new(user_params.except(:member))
-    @member.user = @user
-
-    if @user.valid? && @member.valid? # Check validity of both before trying to save both, because if either are invalid we don't want to save either
-      if @user.save && @member.save
-        sign_in(@user)
-        # redirect_to root_path
-      end
+    @user = User.new(user_params, member_details: member_details)
+    if @user.save
+      sign_in(@user)
+      # redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -57,11 +52,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, member: [:username, :profile_image])
+    params.require(:user).permit(:email, :password, :password_confirmation, member_details)
   end
 
-  def member_params
-    user_params.require(:member).permit(:username, :profile_image)
+  def member_details
+    params.require(:user).require(:member).permit(:username, :profile_image).to_h
   end
 
   # If you have extra params to permit, append them to the sanitizer.
