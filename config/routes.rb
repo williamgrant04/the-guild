@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
   resources :event_member, only: %i[new create destroy]
 
+  resources :games, only: %i[show] do
+    resources :game_members, only: %i[new create]
+  end
+
   get '/invite/:join_code', to: 'guilds#invite'
   resources :events, only: %i[new create edit update show]
   # *Modals
