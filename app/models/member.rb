@@ -1,5 +1,6 @@
 class Member < ApplicationRecord
   belongs_to :user
+  belongs_to :guild, optional: true
   has_one_attached :profile_image
 
   validates :username, presence: true, uniqueness: true
