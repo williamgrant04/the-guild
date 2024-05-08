@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'home#home'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: "users/sessions"
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   resources :games, only: %i[show] do
     resources :game_members, only: %i[new create]
   end
-
   get '/invite/:join_code', to: 'guilds#invite'
   resources :events, only: %i[new create edit update show]
   # *Modals

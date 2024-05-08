@@ -1,1 +1,81 @@
-// Specific CSS for your home-page
+.our-header {
+  background-color: $primary;
+  border-bottom: 1px solid black;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  height: 10vh;
+  position: relative;
+  h1 {
+    padding-top: 1rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  a {
+    position: absolute;
+    right: 1rem;
+    bottom: 1.75rem;
+    text-decoration: none;
+    color: white;
+    background-color: $accent;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: .75em;
+  }
+}
+
+.banner {
+  height: 75vh;
+  width: 100%;
+  background: rgba(0, 0, 0, .5) url("guild-banner-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2, h3 {
+    color: white;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  h2 {
+    font-size: 3em;
+  }
+
+  h3 {
+    font-size: 1.75em;
+  }
+}
+
+.guild-description {
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  background-color: $secondary;
+  padding-bottom: 0;
+  h2 {
+    font-size: 1.5em;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.cards
+{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2rem;
+  background-color: $secondary;
+  .info-card {
+    width: 30%;
+    background-color: $accent;
+    border-radius: 8px;
+    padding: 2rem 3rem 2rem 3rem;
+    text-align: center;
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+}
