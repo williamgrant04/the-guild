@@ -6,10 +6,12 @@ class GuildsController < ApplicationController
 
   def new
     @guild = Guild.new
+    authorize @guild
   end
 
   def create
     @guild = Guild.new(guild_params)
+    authorize @guild
     if @guild.save
       redirect_to @guild.find(params[:id])
     else
@@ -20,9 +22,11 @@ class GuildsController < ApplicationController
   def edit
     @member = current_user
     @guild = Guild.find(params[:id])
+    authorize @guild
   end
 
   def update
+    authorize @guild
     @member = current_user
     @guild = Guild.find(params[:id])
     if @guild.update(guild_params)
@@ -34,6 +38,7 @@ class GuildsController < ApplicationController
   end
 
   def invite
+    # I dont think this needs authorization, but we'll find out later I suppose
     @guild = Guild.find_by(join_code: params[:join_code])
     @member = current_user.member
     # @member.guild = @guild
