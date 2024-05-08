@@ -27,6 +27,7 @@ class Guild < ApplicationRecord
 
   def add_owner_as_member
     self.owner.guild = self
+    self.owner.role = "admin"
     self.owner.save
   end
 end
