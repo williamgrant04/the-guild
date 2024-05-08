@@ -1,0 +1,9 @@
+<%= simple_form_for [@guild, @game] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :game_banner %>
+  <%= f.input :game_icon %>
+  <div class="actions">
+    <%= f.submit "Create Game", class: "btn btn-primary" %>
+    <%= link_to "Cancel", @guild, class: "btn btn-secondary" %>
+  </div>
+<% end %>
