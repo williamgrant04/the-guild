@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
   resources :guilds, except: %i[destroy index] do
-    resources :games, only: %i[new create] do
-      resources :event_member, only: %i[new create destroy]
-    end
+    resources :games, only: %i[new create]
   end
+  resources :event_member, only: %i[new create destroy]
+
   get '/invite/:join_code', to: 'guilds#invite'
   resources :events, only: %i[new create edit update show]
   # *Modals

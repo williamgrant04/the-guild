@@ -15,7 +15,7 @@ class EventMembersController < ApplicationController
 
   def destroy
     @event_member.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: @guild_path)
   end
 
   private
