@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   get '/invite/:join_code', to: 'guilds#invite'
   resources :events, only: %i[new create edit update show]
-  # *Modals
-  # For the modals, write custom paths following the below pattern
-  # get "modals/test", to: "modals#test"
+
+  get "modals/:modal", to: "modals#get_modal"
 end

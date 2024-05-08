@@ -8,4 +8,8 @@ class ModalsController < ApplicationController
   # def test
   #   render partial: "modals/test"
   # end
+
+  def get_modal
+    render partial: "modals/#{params[:modal]}"
+  end
 end
