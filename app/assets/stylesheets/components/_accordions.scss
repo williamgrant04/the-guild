@@ -4,6 +4,7 @@
   margin: 0 auto;
   margin-top: 12px;
   margin-bottom: 12px;
+  border-radius: 0px 0px $border-radius $border-radius;
 }
 
 .accordion + .title {
@@ -14,6 +15,14 @@
   justify-content: start;
   padding: 8px;
   background: $secondary;
+  border-radius: $border-radius $border-radius $border-radius $border-radius;
+  transition: 0.5s ease;
+  &:hover {
+    background-color: $hover;
+  }
+}
+.accordion:checked ~ .title {
+  border-radius: $border-radius $border-radius 0px 0px;
 }
 
 .accordion ~ .title {
@@ -52,7 +61,8 @@
   max-width: 98%;
   margin-left: 2%;
   transition: 0.5s ease;
-  height: 40px;
+  height: 34px;
+  border-radius: $border-radius;
   &:hover {
     max-width: 100%;
     margin-left: 0%;
@@ -82,8 +92,8 @@
   margin-top: 5px;
 }
 .game-logo {
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 .gamer-content-info {
