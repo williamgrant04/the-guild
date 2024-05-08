@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :guilds, except: %i[destroy index] do
     resources :games, only: %i[new create]
   end
-
+  get '/invite/:join_code', to: 'guilds#invite'
   resources :events, only: %i[new create edit update show]
   # *Modals
   # For the modals, write custom paths following the below pattern
