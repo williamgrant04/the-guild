@@ -1,0 +1,18 @@
+<div class="container-sidebar">
+    <div class="homepage-btn">
+    <%=link_to "Home", guild_path(@guild), class: "home-btn" %>
+    </div>
+    <span class="line"></span>
+    <div class="games-list">
+    <% @games.each do |game| %>
+      <div class="games-item">
+        <%=image_tag(game.logo, class: "img") %>
+        <p><%=game.name %></p>
+      </div>
+    <% end %>
+      <span class="line"></span>
+      <div class="game-btn">
+        <%=link_to "Add a game", new_guild_game_path(@guild), class: "add-game" %>
+      </div>
+    </div>
+  </div>
