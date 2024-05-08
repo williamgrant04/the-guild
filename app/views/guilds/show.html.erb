@@ -3,6 +3,12 @@
 <%# TABS BEGIN %>
 <div class="main-container">
   <div class="container mt-5">
+    <div data-controller="clipboard" class="d-flex flex-row-reverse">
+    <%# if guild.owner == current_user do %>
+      PIN: <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">
+      <button data-action="clipboard#copy" class="btn btn-secondary mt-2">Invite a member</button>
+      <%# end %>
+    </div>
     <div class="tabs-container">
       <ul class="breadcrumb">
         <li class="breadcrumb__item breadcrumb__item-firstChild">
