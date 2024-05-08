@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Add a Member to the Game</h1>
+  <%= simple_form_for [@game, @game_member] do |f| %>
+    <%= f.input :member, collection: @member_usernames, label: "Member" %>
+    <%= f.input :member_game_name %>
+    <%= f.input :details, label: "Player Details" %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
