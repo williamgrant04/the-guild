@@ -1,0 +1,7 @@
+<div class="container">
+  <h1><%= @game.name %></h1>
+  <%= link_to "Add Player", new_game_game_member_path(params[:id]) %>
+  <% @game_members.each do |member| %>
+    <%= member.username %>
+  <% end %>
+</div>

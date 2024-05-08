@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :games, only: %i[new create]
   end
 
+  resources :games, only: %i[show] do
+    resources :game_members, only: %i[new create]
+  end
+
   resources :events, only: %i[new create edit update show]
   # *Modals
   # For the modals, write custom paths following the below pattern
