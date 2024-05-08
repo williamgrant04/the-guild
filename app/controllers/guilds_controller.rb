@@ -12,8 +12,10 @@ class GuildsController < ApplicationController
   def create
     @guild = Guild.new(guild_params)
     authorize @guild
+    @guild.owner = current_user.member
+
     if @guild.save
-      redirect_to @guild.find(params[:id])
+      redirect_to guild_path(@guild)
     else
       render :new, status: :unprocessable_entity
     end

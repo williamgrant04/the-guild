@@ -1,6 +1,7 @@
 class Guild < ApplicationRecord
   # conditions
   before_validation :generate_code
+  before_save :add_owner_as_member
   # associations
   has_many :members
   has_many :games
@@ -22,5 +23,10 @@ class Guild < ApplicationRecord
       random_code = SecureRandom.urlsafe_base64(18)
       break random_code unless Guild.exists?(join_code: random_code)
     end
+  end
+
+  def add_owner_as_member
+    self.owner.guild = self
+    self.owner.save
   end
 end
