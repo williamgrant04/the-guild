@@ -15,8 +15,8 @@ class GuildPolicy < ApplicationPolicy
   end
 
   def create?
-    # Anyone can create a guild
-    true
+    # Anyone can create a guild, except for users who are already in a guild
+    user.member.guild == nil
   end
 
   def edit?
