@@ -1,5 +1,53 @@
-
-<h3><strong>Name: </strong><%= @game.name %></h3>
-
+<%# TABS BEGIN %>
+<div class="main-container"; style="background-image: url('cl_image_tag(@game.game_banner.key')";>
+  <div class="container mt-5">
+    <div class="d-flex flex-row-reverse">
+    </div>
+    <div class="tabs-container">
+      <ul class="breadcrumb">
+        <li class="breadcrumb__item breadcrumb__item-firstChild">
+          <span class="breadcrumb__inner">
+          <%# <span class="breadcrumb__title">Members</span> %>
+          <%=link_to "Member", game_path(@game), class: "breadcrumb__title"%>
+          </span>
+        </li>
+        <li class="breadcrumb__item">
+          <span class="breadcrumb__inner">
+          <%# <span class="breadcrumb__title">Chat</span> %>
+          <%=link_to "Chat", game_path(@game), class: "breadcrumb__title"%>
+          </span>
+        </li>
+        <li class="breadcrumb__item">
+          <span class="breadcrumb__inner">
+          <%# <span class="breadcrumb__title">Events</span> %>
+          <%=link_to "Events", events_path(@game), class: "breadcrumb__title"%>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <%# TABS END %>
+<h4><strong>Name: </strong><%= @game.name %></h3>
 <%= link_to 'Edit', edit_game_path(@game) %>
 <%= link_to 'Back', @game %>
+<div class="card-container">
+  <div class="game-member-card-wrapper">
+    <% @game.members.each do |member| %>
+    <div class="game-member-card">
+      <div class="card-image img" style="background-image: url(<%=cl_image_path(member.profile_image.key)%>">
+        <%# <%= cl_image_tag(member.profile_image.key, class: "img") %>
+      </div>
+      <div class="card-details">
+      <% @game_members.each do |gm| %>
+        <p><%= member.username %> - <%= gm.member_game_name %></p>
+          <br>
+          <span class="role-title"><%=member.role %></span>
+          <br>
+          <span class="role-title"><%=gm.details %></span>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>

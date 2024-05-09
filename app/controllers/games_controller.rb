@@ -4,6 +4,7 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    authorize @game
   end
 
   def create
@@ -32,6 +33,10 @@ class GamesController < ApplicationController
 
   # GET /games/:id
   def show
+    @game = Game.find(params[:id])
+    @game_members = @game.game_members
+    authorize @game
+
   end
 
   # DELETE /games/:id
