@@ -13,6 +13,14 @@
 
   <body>
     <%= render "shared/flashes" %>
-    <%= yield %>
+    <div id="nav">
+      <%# render navbar %>
+    </div>
+    <div id="page">
+      <%= render "layouts/sidebar", locals: { guild: @guild, games: @games } %>
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
