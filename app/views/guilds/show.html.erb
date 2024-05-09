@@ -5,7 +5,7 @@
   <div class="container mt-5">
     <div data-controller="clipboard" class="d-flex flex-row-reverse">
     <%# if guild.owner == current_user do %>
-      PIN: <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">
+      <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">
       <button data-action="clipboard#copy" class="btn btn-secondary mt-2">Invite a member</button>
       <%# end %>
     </div>
@@ -32,173 +32,27 @@
   <%# TABS END %>
   <%# ACCORDIONS BEGIN %>
   <div class="container-accordions">
-  <%# for each guild members do %>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-        <%# each gmaes that the guild member plays %>
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
+    <% @guild.members.each do |member| %>
+      <label class="accordion-wrapper">
+        <input type="checkbox" class="accordion" hidden />
+          <div class="title" style="width: 100%; justify-content: space-between;">
+          <div class="title-image">
+            <%=image_tag('Anduin.png', class: "game-logo") %>
+              <strong><%=member.username%></strong>
           </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
+            <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
           </div>
-          <%# end %>
-        </div>
-        <%# ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️TO BE DELETED : ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️%>
-        <div class="content">
-        <%# each gmaes that the guild member plays %>
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
+          <div class="content">
+          <%# each gmaes that the guild member plays %>
+            <div class="game-content-info">
+              <%=image_tag('wow.png', class: "game-logo") %>
+              <p><strong>World of Warcraft: Dragonflight</strong></p>
+            </div>
+            <div class="gamer-content-info">
+              <p>game_username</p>
+            </div>
+            <% end %>
           </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-          <%# end %>
-        </div>
-        <%# ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️TO BE DELETED : END ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️%>
-    </label>
-    <%# end %>
-    <%# ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️ TO BE DELETED : BEGIN ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️%>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-    </label>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-    </label>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-    </label>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-    </label>
-    <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-        <div class="title">
-        <%=image_tag('Anduin.png', class: "game-logo") %>
-          <strong>Anduin Wrynn</strong>
-          <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('wow.png', class: "game-logo") %>
-            <p><strong>World of Warcraft: Dragonflight</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-        <div class="content">
-          <div class="game-content-info">
-            <%=image_tag('destiny.webp', class: "game-logo") %>
-            <p><strong>Destiny 2: The Final Shape</strong></p>
-          </div>
-          <div class="gamer-content-info">
-            <p>game_username</p>
-          </div>
-        </div>
-    </label>
 
-    <%# ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️ TO BE DELETED : END ☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️☢️%>
-  </div>
-
-</div>
+            </div>
+          </div>

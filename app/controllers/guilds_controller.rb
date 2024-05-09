@@ -1,5 +1,5 @@
 class GuildsController < ApplicationController
-  
+  # before_action :set_game
   def show
     @guild = Guild.find(params[:id])
   end
@@ -45,6 +45,10 @@ class GuildsController < ApplicationController
   end
 
   private
+
+  # def set_game
+  #   @game = Game.find(params[:game_id])
+  # end
 
   def guild_params
     params.require(:guild).permit(:name, :image, :icon)
