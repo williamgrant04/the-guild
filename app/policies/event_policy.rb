@@ -25,5 +25,6 @@ class EventPolicy < ApplicationPolicy
 
   def update?
     # Only the owner of the guild can edit the event
+    user.member.role == 'admin'
   end
 end
