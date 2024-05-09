@@ -3,10 +3,8 @@
   <div class="container">
     <div data-controller="clipboard" class="d-flex flex-row-reverse">
     <%# invite a member only appears if the current_user = guilde.member %>
-    <% if @guild.owner == current_user.member do %>
-      <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">
-      <button data-action="clipboard#copy" class="btn btn-secondary mt-2">Invite a member</button>
-      <% end %>
+    <% if @guild.owner == current_user.member %>
+      <button data-controller="clipboard" data-action="click->clipboard#copy" data-clipboard-code-value="<%= @guild.join_code %>" class="btn btn-secondary mt-2">Invite a member</button>
     <% end %>
     </div>
     <div class="tabs-container">
