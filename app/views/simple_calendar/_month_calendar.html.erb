@@ -1,15 +1,10 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.abbr_month_names')[start_date.month] %> <%= start_date.year %></time>
 
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-    </nav>
   </div>
 
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
@@ -30,4 +25,27 @@
       <% end %>
     </tbody>
   </table>
+    <nav>
+      <div class="nav-button">
+        <%= link_to  calendar.url_for_previous_view, class: "nav-button" do %>
+          <i class="fa-solid fa-chevron-left"></i>
+        <% end %>
+      </div>
+
+      <div class="nav-button">
+        <%= link_to new_polymorphic_path([@source, :event]), class: "nav-button" do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+      </div>
+
+      <div class="nav-button">
+      <%= link_to calendar.url_for_next_view, class: "nav-button" do %>
+        <i class="fa-solid fa-chevron-right"></i>
+      <% end %>
+      </div>
+      <%#= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
+
+    </nav>
 </div>
+<%# t('simple_calendar.previous', default: 'Previous') Default nav button for previous month %>
+<%# t('simple_calendar.next', default: 'Next') Default nav button for next month %>
