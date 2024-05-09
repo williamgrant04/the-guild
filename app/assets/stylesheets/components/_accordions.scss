@@ -15,7 +15,7 @@
   justify-content: start;
   padding: 8px;
   background: $secondary;
-  border-radius: $border-radius $border-radius $border-radius $border-radius;
+  border-radius: $border-radius;
   transition: 0.5s ease;
   &:hover {
     background-color: $hover;
@@ -31,22 +31,6 @@
   line-height: 24px;
   color: white;
   }
-}
-.accordion ~ .title .side-icon {
-  display: block;
-}
-
-.accordion:checked ~ .title .side-icon {
-  display: none;
-}
-
-.accordion ~ .title .down-icon {
-  display: none;
-}
-
-.accordion:checked ~ .title .down-icon {
-  display: block;
-
 }
 
 .accordion ~ .content {
@@ -73,6 +57,9 @@
 .game-content-info {
   display: flex;
   justify-content: space-between;
+  p {
+    margin: 0px;
+  }
 }
 .container-accordions {
   display: block;
@@ -83,6 +70,15 @@
 // .main-container {
 //   background-color: $primary;
 // }
+
+.main-container{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $primary;
+  height: 100%;
+  min-height: 100vh;
+}
+
 .content {
   display: flex;
   background-color: white;
@@ -100,6 +96,9 @@
   display: flex;
   justify-content: end;
   text-align: center;
+  p {
+    margin: 0px;
+  }
 }
 .title > .edit-user {
   justify-content: end;
