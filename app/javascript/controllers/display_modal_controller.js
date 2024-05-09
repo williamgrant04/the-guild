@@ -10,7 +10,6 @@ export default class extends Controller {
       .then((html) => {
         this.rootTarget.innerHTML = html
         this.rootTarget.querySelector(".modal-wrapper").dataset.action = "click->display-modal#hide keyup.esc@document->display-modal#hide"
-        // this.rootTarget.classList.add('is-active')
       })
   }
 

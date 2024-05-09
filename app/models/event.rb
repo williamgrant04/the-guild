@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   has_many :event_members
   has_many :members, through: :event_members
 
+  belongs_to :guild
+  belongs_to :game, optional: true # Doesn't need to be associated with a game
+
   # Event name validations
   validates :name, presence: true
 
