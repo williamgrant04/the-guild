@@ -1,13 +1,9 @@
 .container-sidebar {
   border: solid 1px black;
-  position: fixed;
-  gap: 5px;
-  max-width: 25%;
-  margin-top: 10%;
+  width: 250px;
   background-color: #46244C;
   display : flex;
   flex-direction: column;
-  border-radius: 10px;;
   height: 100vh;
   font-family: "Work Sans", "Helvetica", "sans-serif";;
 }

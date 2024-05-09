@@ -16,10 +16,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.new(user_params, member_details: member_details)
+    @user = User.new({ **user_params, member_details: member_details})
+    
     if @user.save
       sign_in(@user)
-      # redirect_to root_path
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,7 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, member_details)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
   def member_details

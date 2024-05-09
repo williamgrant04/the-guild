@@ -2,7 +2,7 @@
 <%# WE NEED A PARTIAL SIDEBAR MENU %>
 <%# TABS BEGIN %>
 <div class="main-container">
-  <div class="container mt-5">
+  <div class="container">
     <div data-controller="clipboard" class="d-flex flex-row-reverse">
     <%# if guild.owner == current_user do %>
       PIN: <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">

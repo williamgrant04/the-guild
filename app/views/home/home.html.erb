@@ -15,7 +15,11 @@
     <div class="our-header">
       <h1>THE GUILD</h1>
       <% if current_user %>
-        <%= link_to "Your Guild", guild_path(current_user.member.guild) %>
+        <% if current_user.member.guild.nil? %>
+          <%= link_to "Create a Guild", new_guild_path %>
+        <% else %>
+          <%= link_to "Your Guild", guild_path(current_user.member.guild) %>
+        <% end %>
       <% else %>
         <%= link_to "Sign-In", new_user_session_path %>
       <% end %>

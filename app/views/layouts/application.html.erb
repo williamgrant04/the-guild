@@ -16,11 +16,20 @@
     <div id="nav">
       <%# render navbar %>
     </div>
-    <div id="page">
-      <%= render "layouts/sidebar", locals: { guild: @guild, games: @games } %>
-      <div id="content">
-        <%= yield %>
+
+    <% if !@guild.id.nil? %>
+      <div id="page" style="background-image: url(<%= @guild.image.key ? cl_image_path(@guild.image.key) : "" %>);">
+        <%= render "layouts/sidebar", locals: { guild: @guild, games: @games } %>
+        <div id="content">
+          <%= yield %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div id="page">
+        <div id="content">
+          <%= yield %>
+        </div>
+      </div>
+    <% end %>
   </body>
 </html>
