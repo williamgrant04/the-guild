@@ -25,8 +25,7 @@
         </li>
         <li class="breadcrumb__item">
           <span class="breadcrumb__inner">
-          <%# <span class="breadcrumb__title">Events</span> %>
-          <%=link_to "Events", events_path(@guild), class: "breadcrumb__title"%>
+          <span class="breadcrumb__title"><%= link_to "Events", guild_events_path(@guild) %></span>
           </span>
         </li>
       </ul>
