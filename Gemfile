@@ -53,6 +53,7 @@ gem "sassc-rails"
 gem "cloudinary"
 gem "simple_calendar"
 gem "pundit"
+gem "faker"
 
 group :development, :test do
   gem "dotenv-rails"

@@ -1,47 +1,100 @@
 require "open-uri"
+require "faker"
 
 puts "To clean the database, run rails db:reset, trying to destroy each model doesn't work"
 puts "-----------------"
 
 puts "Seeding users"
-User.create(email: "email@email.email", password: "password", password_confirmation: "password", member_details: { username: "Username" })
-User.create(email: "another@email.email", password: "password", password_confirmation: "password", member_details: { username: "dlkfjgdlkfghj" })
-User.create(email: "and@another.email", password: "password", password_confirmation: "password", member_details: { username: "oesnauiynfodef" })
+pic = 1
+9.times do
+  User.create!(email: Faker::Internet.email,
+               password: "password",
+               password_confirmation: "password",
+               member_details: { username: Faker::Name.name })
+end
+User.create!(email: "email@email.email",
+             password: "password",
+             password_confirmation: "password",
+             member_details: { username: "William" })
 puts "Done"
+puts "-----------------"
 
+puts "Attaching profile images"
+Member.all.each do |member|
+  member.profile_image.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/profile-#{pic}.png"), filename: "#{pic}.png", content_type: "image/png")
+  pic += 1
+end
+puts "Done"
 puts "-----------------"
 
 puts "Seeding guilds"
-Guild.create!(name: "Guild 1", owner: User.first.member)
+guild = Guild.new(name: "Praetorian", owner: User.last.member)
+guild.icon.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/guild-icon-1.jpg"), filename: "guild-icon-1.png", content_type: "image/jpg")
+guild.image.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/guild-image-1.jpg"), filename: "guild-image-1.png", content_type: "image/jpg")
+guild.save!
 puts "Done"
 
 puts "-----------------"
 
 puts "Seeding games"
-Guild.all.each do |guild|
-  3.times do |i|
-    g = Game.new(name: "Game #{i}", guild: guild)
-    g.game_icon.attach(io: File.open("#{Rails.root}/app/assets/images/50.png"), filename: "default_game_icon.png", content_type: "image/png")
-    g.save!
-  end
+
+Guild.all.each do |g|
+  Game.new(guild: g)
+  destiny = Game.new(guild: g, name: "Destiny 2")
+  destiny.game_icon.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/destiny.jpg"),
+                           filename: "destiny-icon.png",
+                           content_type: "image/png")
+  destiny.game_banner.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/destiny-banner.jpg"),
+                             filename: "destiny-banner.jpg",
+                             content_type: "image/jpg")
+  destiny.save!
+
+  wow = Game.new(guild: g, name: "World of Warcraft")
+  wow.game_icon.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/wow.png"),
+                       filename: "wow-icon.png",
+                       content_type: "image/png")
+  wow.game_banner.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/wow-banner.jpg"),
+                         filename: "wow-banner.jpg",
+                         content_type: "image/jpg")
+  wow.save!
+
+  warframe = Game.new(guild: g, name: "Warframe")
+  warframe.game_icon.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/warframe.png"),
+                            filename: "warframe-icon.png",
+                            content_type: "image/png")
+  warframe.game_banner.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/warframe-banner.jpg"),
+                              filename: "warframe-banner.jpg",
+                              content_type: "image/jpg")
+  warframe.save!
+
+  eso = Game.new(guild: g, name: "Elder Scrolls Online")
+  eso.game_icon.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/eso.jpg"),
+                       filename: "eso-icon.jpg",
+                       content_type: "image/jpg")
+  eso.game_banner.attach(io: File.open("#{Rails.root}/app/assets/images/seed-pics/eso-banner.jpg"),
+                         filename: "eso-banner.jpg",
+                         content_type: "image/jpg")
+  eso.save!
 end
 puts "Done"
 
 puts "-----------------"
 
-puts "Seeding guild events (1 per guild)"
-Guild.all.each do |guild|
-  Event.create(name: "Guild event", description: "I am so tired", start: DateTime.now, end: DateTime.now + 1.day, guild: guild)
+puts "Seeding events"
+Guild.all.each do |g|
+  Event.create(name: "Meet and Greet!",
+               description: "Let's get to know each other!",
+               start: DateTime.tomorrow,
+               end: DateTime.tomorrow + 1.hour,
+               guild: g)
 end
-puts "Done"
-
-puts "-----------------"
-
-puts "Seeding game events (2 per game)"
 Game.all.each do |game|
-  2.times do
-    Event.create(name: "Game event", description: "I am so tired", start: DateTime.now, end: DateTime.now + 1.day, guild: game.guild, game: game)
-  end
+  Event.create(name: "Raid night",
+               description: "Lets progress!",
+               start: DateTime.now,
+               end: DateTime.now + 1.hour,
+               guild: game.guild,
+               game: game)
 end
 puts "Done"
 
@@ -52,4 +105,28 @@ Member.all.each do |member|
   member.guild = Guild.first
   member.save
 end
+puts "Done"
+
+puts "-----------------"
+
+puts "Adding members to games"
+rank = ["Member", "Officer", "Recruit", "Veteran"]
+Member.all.each do |member|
+  Game.all.each do |game|
+    GameMember.create(member: member,
+                      game: game,
+                      member_game_name: Faker::Fantasy::Tolkien.character,
+                      details: rank.sample)
+  end
+end
+puts "Done"
+puts "-----------------"
+
+puts "Adding members to events"
+Event.all.each do |event|
+  Member.first(8).each do |member|
+    EventMember.create(member: member, event: event)
+  end
+end
+
 puts "Done"
