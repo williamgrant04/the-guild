@@ -18,18 +18,23 @@
   </head>
 
   <body>
-     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <div id="nav">
-      <%# render navbar %>
+      <%= render "shared/navbar", locals: { guild: @guild || @game.guild } %>
     </div>
 
-    <% if !@guild.nil? %>
+    <% if !@guild.nil? || !@game.nil? %>
       <div id="page" data-controller="display-modal">
-        <%= render "layouts/sidebar", locals: { guild: @guild, games: @games } %>
-        <div id="content" style="background-image: url(<%= @guild.image.key ? cl_image_path(@guild.image.key) : "" %>);">
-          <%= yield %>
-        </div>
+        <%= render "layouts/sidebar", locals: { guild: @guild || @game.guild, games: @games || @game.guild.games } %>
+        <% if !@game.nil? %>
+          <div id="content" style="background-image: url(<%= @game.game_banner.key ? cl_image_path(@game.game_banner.key) : '' %>);">
+            <%= yield %>
+          </div>
+        <% else %>
+          <div id="content" style="background-image: url(<%= @guild.image.key ? cl_image_path(@guild.image.key) : '' %>);">
+            <%= yield %>
+          </div>
+        <% end %>
         <div class="modal-root" data-display-modal-target="root"></div>
       </div>
     <% else %>

@@ -4,6 +4,7 @@
   align-items: center;
   background-color: $accent;
   padding: 10px 20px;
+  height: 75px;
 
   .icon img {
       height: 40px;
@@ -14,7 +15,6 @@
     font-family: 'Overpass', sans-serif;
     font-weight: bold;
     font-size: 1.2em;
-    margin-right: 5px;
   }
 
   .profile {
