@@ -25,7 +25,7 @@
         </li>
         <li class="breadcrumb__item">
           <span class="breadcrumb__inner">
-          <span class="breadcrumb__title"><%= link_to "Events", guild_events_path(@guild) %></span>
+          <%= link_to "Events", guild_events_path(@guild), class: "breadcrumb__title" %>
           </span>
         </li>
       </ul>
@@ -52,7 +52,7 @@
           <p><strong><%=game.name%></strong></p>
         </div>
         <div class="gamer-content-info">
-          <p><%=member.username%></p>
+          <p><i class="fa-solid fa-gamepad"></i>  <%=member.get_game_member_name(game)%></p>
         </div>
         <% end %>
       </div>
