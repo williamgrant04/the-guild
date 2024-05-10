@@ -3,7 +3,7 @@
   background-color: $primary;
   display : flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 75px);
   font-family: "Work Sans", "Helvetica", sans-serif;
 }
 
@@ -60,6 +60,7 @@
     border-radius: 50%;
     height: 35px;
     width: 35px;
+    object-fit: cover;
   }
 
   &:hover {
