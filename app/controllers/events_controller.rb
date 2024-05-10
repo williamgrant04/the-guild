@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event_member = EventMember.new
     @event = Event.find(params[:id])
     authorize @event
   end
