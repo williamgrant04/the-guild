@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   before_action :set_guild, only: %i[new create]
 
   def new
+    @games = Game.where(guild: @guild)
     @game = Game.new
     authorize @game
   end

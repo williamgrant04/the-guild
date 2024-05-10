@@ -1,4 +1,6 @@
-<div class="d-flex" style="background-color: purple; color: white">
+<div class="modal-wrapper">
+  <div class="modal-content">
+    <div class="d-flex">
   <div class="event-info w-50 m-2">
   <h1><%= @event.name %></h1>
   <p>Event description: <%= @event.description %><br>
@@ -14,5 +16,8 @@
         <li><%= member.username %> - <%= member.role %></li>
       <% end %>
     </ul>
+  </div>
+</div>
+
   </div>
 </div>
