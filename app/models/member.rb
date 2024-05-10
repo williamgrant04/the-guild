@@ -10,6 +10,10 @@ class Member < ApplicationRecord
 
   before_create :set_default_role
 
+  def get_game_member_name(game)
+    game_members.find_by(game: game).member_game_name
+  end
+
   private
 
   def set_default_role
