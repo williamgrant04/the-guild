@@ -8,6 +8,8 @@ class EventsController < ApplicationController
     # This finds all events for the source (game or guild)
     @all_events = @source.events
     # If the source is an instance of Guild we only find events that are not associated with a game
+    @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events
+    @guild = Game.find(params[:game_id]).guild
     @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events.where(game: @source)
   end
 
