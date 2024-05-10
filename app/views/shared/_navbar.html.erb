@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <% if current_user %>
+    <div>
+      <%= link_to "#" do %>
+        <% if @guild.icon.attached? %>
+          <%= cl_image_tag(@guild.icon.key, alt: "Guild Icon", height: "40px", width: "40px", class: "icon") %>
+        <% end %>
+      <% end %>
+      <% if @guild %>
+        <span class="icon-name"><%= @guild.name %></span>
+      <% end %>
+    </div>
+  <% end %>
+  <% if current_user %>
+    <div class="profile">
+      <div class="dropdown" data-action="click->navbar-dropdown#toggleDropdown">
+        <%= cl_image_tag(current_user.member.profile_image.key, alt: "Profile Picture", height: "40px", width: "40px") %>
+
+        <div class="dropdown-content" data-navbar-dropdown-target="dropdown">
+          <%= link_to "Profile", "#" %>
+          <%= link_to "Log out", "#", data: { turbo_method: :delete } %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="signup">
+      <%= link_to "Login/Sign up", "#" %>
+    </div>
+  <% end %>
+</nav>
