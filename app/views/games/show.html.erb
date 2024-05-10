@@ -1,25 +1,38 @@
 <div class="main-container" style="background-image: url(<%= @game.game_banner.key ? cl_image_path(@game.game_banner.key) : "" %>)">
-  <div class="card-container">
-    <div class="game-member-card-wrapper">
-    <% @game.members.each do |member| %>
-      <div class="game-member-card">
-        <div class="card-image img"; style="background-image: url(<%=cl_image_path(member.profile_image.key)%>">
-          <%# <%= cl_image_tag(member.profile_image.key, class: "img") %>
-        </div>
-        <% member.game_members.each do |gm| %>
-          <div class="card-details">
-            <p><strong><i class="fa-solid fa-gamepad"></i>  <%= member.username %> - <%= gm.member_game_name %></strong></p>
-          <%# <% if member.role == "admin" do %>
-            <p class="role-title"><i class="fa-solid fa-crown"></i> <%=member.role %></p>
-            <%# <% else %>
-            <%# <p class="role-title"><%=member.role %>
-            <%# <% end %>
-          <%# <% end %>
-            <p class="role-title"><i class="fa-solid fa-shield-halved"></i> <%=gm.details %></p>
-        </div>
-        <% end %>
+  <div class="upper-container">
+    <div class="tabs">
+      <div class="tab">
+        <p>Members</p>
       </div>
-    <% end %>
+      <div class="tab">
+        <p>Chat</p>
+      </div>
+      <div class="tab">
+        <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "event-btn" %></p>
+      </div>
     </div>
-  </div>
-</div>
+    </div>
+      <div class="card-container">
+        <div class="game-member-card-wrapper">
+        <% @game.members.each do |member| %>
+          <div class="game-member-card">
+            <div class="card-image img"; style="background-image: url(<%=cl_image_path(member.profile_image.key)%>">
+              <%# <%= cl_image_tag(member.profile_image.key, class: "img") %>
+            </div>
+            <% member.game_members.each do |gm| %>
+              <div class="card-details">
+                <p><strong><i class="fa-solid fa-gamepad"></i>  <%= member.username %> - <%= gm.member_game_name %></strong></p>
+              <%# <% if member.role == "admin" do %>
+                <p class="role-title"><i class="fa-solid fa-crown"></i> <%=member.role %></p>
+                <%# <% else %>
+                <%# <p class="role-title"><%=member.role %>
+                <%# <% end %>
+              <%# <% end %>
+                <p class="role-title"><i class="fa-solid fa-shield-halved"></i> <%=gm.details %></p>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
