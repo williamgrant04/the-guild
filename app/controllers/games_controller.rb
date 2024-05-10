@@ -36,7 +36,6 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game_members = @game.game_members
     authorize @game
-
   end
 
   # DELETE /games/:id
