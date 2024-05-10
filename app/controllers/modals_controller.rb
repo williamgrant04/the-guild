@@ -1,6 +1,22 @@
 class ModalsController < ApplicationController
   skip_after_action :verify_authorized
   def get_modal
+    if params[:type] != "undefined" && params[:id] != "undefined"
+      render partial: "modals/#{params[:modal]}", locals: { "#{params[:type]}".to_sym => $types[params[:type]].find(params[:id]) }
+      return
+    end
     render partial: "modals/#{params[:modal]}"
   end
 end
+
+
+# !This hash will have to be updated if we add more models
+$types = {
+  "event" => Event,
+  "guild" => Guild,
+  "game" => Game,
+  "member" => Member,
+  "user" => User,
+  "eventmember" => EventMember,
+  "gamemember" => GameMember
+}
