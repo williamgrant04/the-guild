@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    # Instantiates a new EventMember object for the form
     @event_member = EventMember.new
     @event = Event.find(params[:id])
     authorize @event
@@ -23,9 +24,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    # This sets the guild or game depending on what is in the params
+    # This sets the game for the event if the game_id is present in the params
     @event.game = Game.find(params[:game_id]) if params[:game_id].present?
-    @event.guild = Guild.find(params[:guild_id]) if params[:guild_id].present?
+    # This sets the guild for the event if the guild_id is present in the params, if not it sets it to game.guild
+    @event.guild = params[:guild_id].present? ? Guild.find(params[:guild_id]) : @event.game.guild
     if @event.save
       redirect_to root_path, notice: 'Event created successfully'
     else
