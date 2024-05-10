@@ -7,10 +7,10 @@ export default class extends Controller {
   copy () {
     navigator.clipboard.writeText(`${window.location.origin}/invite/${this.codeValue}`)
 
-    this.element.innerText = "Copied!"
+    this.element.innerHTML = "<p>Copied!</p>"
 
     setTimeout(() => {
-      this.element.innerText = "Invite a member"
+      this.element.innerHTML = "<p>Invite a member</p>"
     }, 2000)
   }
 }

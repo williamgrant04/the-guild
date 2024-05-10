@@ -2,10 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="display-modal"
 export default class extends Controller {
-  static targets = [ "root" ]
+  static targets = [ "root", "data" ]
 
   show() {
-    fetch(`modals/${this.rootTarget.dataset.modal}`)
+    fetch(`${window.location.origin}/modals/${this.dataTarget.dataset.modal}`)
       .then(res => res.text())
       .then((html) => {
         this.rootTarget.innerHTML = html
