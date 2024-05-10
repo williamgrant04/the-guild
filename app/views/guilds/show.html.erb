@@ -31,7 +31,7 @@
 
           <div class="member-actions">
             <% if @guild.owner == current_user.member || member == current_user.member %>
-              <button class="edit-member" data-action="click->display-modal#show">
+              <button class="edit-member" data-action="click->display-modal#show" data-modal="edit_member">
                 <%# This is a p tag for better styling targets %>
                 <p>Edit member</p>
               </button>
@@ -56,6 +56,4 @@
       </div>
     <% end %>
   </div>
-
-  <div data-display-modal-target="data" data-modal="edit_member"></div>
 </div>
