@@ -17,7 +17,7 @@
       <%# render navbar %>
     </div>
 
-    <% if !@guild.id.nil? %>
+    <% if !@guild.nil? %>
       <div id="page" data-controller="display-modal">
         <%= render "layouts/sidebar", locals: { guild: @guild, games: @games } %>
         <div id="content" style="background-image: url(<%= @guild.image.key ? cl_image_path(@guild.image.key) : "" %>);">

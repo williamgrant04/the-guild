@@ -22,8 +22,8 @@
 
   <div class="members-container">
     <% @guild.members.each do |member| %>
-      <div class="member" data-controller="member-dropdown"> <!-- member-active is a class that will be toggled on click -->
-        <div class="dropdown member-active" data-action="click->member-dropdown#toggle">
+      <div class="member" data-controller="member-dropdown">
+        <div class="dropdown" data-action="click->member-dropdown#toggle">
           <div class="member-details">
             <%= cl_image_tag member.profile_image.key %>
             <p><%= member.username %></p>
@@ -37,14 +37,14 @@
               </button>
             <% end %>
 
-            <i class="fa-solid fa-chevron-left dropdown-icon dropdown-active"></i> <!-- dropdown-active is active when the member dropdown is open -->
+            <i class="fa-solid fa-chevron-left dropdown-icon"></i>
           </div>
         </div>
 
-        <div class="member-content content-active">
+        <div class="member-content">
           <% if member.game_members.any? %>
             <% member.game_members.each do |gm| %>
-              <div class="game game-active">
+              <div class="game">
                 <%= cl_image_tag gm.game.game_icon.key %>
                 <h3><%= gm.game.name %>: <%= gm.member_game_name %></h3>
               </div>
