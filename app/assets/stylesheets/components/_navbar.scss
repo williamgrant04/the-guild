@@ -1,0 +1,79 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $accent;
+  padding: 10px 20px;
+
+  .icon img {
+      height: 40px;
+      width: auto;
+  }
+
+  .icon-name {
+    font-family: 'Overpass', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: 5px;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+
+      .dropbtn {
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: $box-shadow;
+        flex-direction: column;
+        min-width: 160px;
+        z-index: 1;
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+        flex-direction: column;
+        border-radius: 8px;
+
+        a {
+          color: white;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        a:hover {
+          background-color:$hover;
+        }
+      }
+
+      &:hover .dropdown-content {
+        display: block;
+        opacity: 1;
+      }
+
+      .dropdown-content:focus-within {
+        display: block;
+      }
+
+
+    }
+  }
+}

@@ -1,38 +1,25 @@
 class EventMembersController < ApplicationController
-  before_action :set_event, :set_guild, :set_game
-  def new
-    @event_member = EventMember.new
-  end
+  before_action :set_source
 
   def create
-    @event_member = EventMember.new(event_member_params)
+    @event_member = EventMember.new
+    @event_member.member = Member.find(params[:member])
+    @event_member.event = Event.find(params[:event])
     if @event_member.save
-      redirect_to @guild.find(params[:id])
+      redirect_back(fallback_location: @guild, notice: 'Signed up successfully')
     else
-      root_path
+      flash[:alert] = 'Something went wrong'
     end
-  end
-
-  def destroy
-    @event_member.destroy
-    redirect_back(fallback_location: guild_path(@guild))
+    authorize @event_member
   end
 
   private
 
-  def set_game
-    @game = Game.find(params[:game_id])
-  end
-
-  def set_event
-    @event = Event.find(params[:event_id])
-  end
-
-  def set_guild
-    @guild = Guild.find(params[:guild_id])
-  end
-
-  def event_member
-    params.require(:event_member).permit(:event, :member)
+  def set_source
+    if params[:game_id]
+      @source = Game.find(params[:game_id])
+    elsif params[:guild_id]
+      @source = Guild.find(params[:guild_id])
+    end
   end
 end

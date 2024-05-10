@@ -16,8 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.new({ **user_params, member_details: member_details})
-    
+    @user = User.new({ **user_params, member_details: member_details })
     if @user.save
       sign_in(@user)
       redirect_to root_path

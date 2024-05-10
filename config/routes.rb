@@ -6,15 +6,16 @@ Rails.application.routes.draw do
   }
   resources :guilds, except: %i[destroy index] do
     resources :games, only: %i[new create]
+    resources :events, only: %i[new create edit update index show]
   end
   resources :games, only: %i[edit update destroy show] do
     resources :game_members, only: %i[new create]
+    resources :events, only: %i[new create edit update index show]
   end
 
-  resources :event_member, only: %i[new create destroy]
+  resources :event_members, only: %i[create destroy]
 
   get '/invite/:join_code', to: 'guilds#invite'
-  resources :events, only: %i[new create edit update show]
 
   get "modals/:modal", to: "modals#get_modal"
 end

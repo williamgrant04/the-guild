@@ -1,0 +1,40 @@
+.simple-calendar {
+  .calendar-heading, th {
+    background-color: $primary;
+    color: white;
+  }
+  td {
+    background-color: white;
+    color: black;
+  }
+
+  .today {
+    background-color: $secondary;
+    color: white;
+  }
+
+  a {
+    text-decoration: none;
+    color: $accent;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .nav-button {
+      color: $secondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 2rem;
+      background-color: $accent;
+      padding: 0rem 1rem;
+      margin: 0 4px;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
