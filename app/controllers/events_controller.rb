@@ -2,15 +2,18 @@ class EventsController < ApplicationController
   before_action :set_source
 
   def index
+    @games = Game.all
+    @event = Event.new
     @events = policy_scope(Event)
     # This finds all events for the source (game or guild)
     @all_events = @source.events
     # If the source is an instance of Guild we only find events that are not associated with a game
-    @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events
+    @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events.where(game: @source)
   end
 
   def show
     # Instantiates a new EventMember object for the form
+    @games = Game.all
     @event_member = EventMember.new
     @event = Event.find(params[:id])
     authorize @event
@@ -61,6 +64,7 @@ class EventsController < ApplicationController
     if params[:game_id]
       @source = Game.find(params[:game_id])
     elsif params[:guild_id]
+      @guild = Guild.find(params[:guild_id])
       @source = Guild.find(params[:guild_id])
     end
   end
