@@ -12,12 +12,12 @@ When you want to add a modal all you need to do is create a partial erb in `view
 ```
 and in the page where you want to show that modal, you need to update your HTML structure to be like so:
 ```html
-<!-- The data-controller attribute needs to go on the highest parent of the page -->
-<div data-controller="display-modal">
   <!-- data-modal needs to have it's value replaced by the modal of the same name as you created the partial, if you created a partial with spaces in the name (_edit_game.html.erb) you exclude the first underscore and keep the rest (data-modal="edit_game") -->
   <!-- You can add classes to this just don't remove the action or 'data-modal' -->
   <button data-action="click->display-modal#show" data-modal="MODALNAME">BUTTON-TEXT</button>
-</div>
+
+  <!-- If you need data in your modal (for a form) add a data-type and data-id attribute -->
+  <button data-action="click->display-modal#show" data-modal="MODALNAME" data-type="TABLENAME" data-id="INSTANCEID">BUTTON-TEXT</button>
 ```
 With the way the modal is structured, clicking on the darkened background will close the modal and so will pressing the ESC key. If you want to add a close button, just create a `<button></button>` with `data-action="click->display-modal#hide"` attribute:
 

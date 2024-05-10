@@ -5,7 +5,10 @@ export default class extends Controller {
   static targets = [ "root" ]
 
   show(e) {
-    fetch(`${window.location.origin}/modals/${e.currentTarget.dataset.modal}`)
+    // So much data
+    const type = e.currentTarget.dataset.type
+    const id = e.currentTarget.dataset.id
+    fetch(`${window.location.origin}/modals/${e.currentTarget.dataset.modal}/?type=${type}&id=${id}`)
       .then(res => res.text())
       .then((html) => {
         this.rootTarget.innerHTML = html
