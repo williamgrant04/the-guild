@@ -5,7 +5,7 @@
 
   <div class="form-inputs">
     <%# This is because of the devise and member split, so sign-up requires both models %>
-    <%= form.simple_fields_for :member do |member| %>
+    <%= form.simple_fields_for :member, as: "member_details" do |member| %>
       <% if @member.errors.any? %>
         <%= member.input :username, required: true, hint: "#{@member.errors.full_messages_for(:username)[0]}" %>
         <%= member.input :profile_image, as: :file, hint: "#{@member.errors.full_messages_for(:profile_image)[0]}" %>

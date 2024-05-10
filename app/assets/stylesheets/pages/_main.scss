@@ -1,0 +1,21 @@
+#nav {
+  // Leave this empty for now, this is generic styling for the navbar
+  // we don't want to change this yet
+}
+
+#page {
+  background-color: $offwhite;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  #content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

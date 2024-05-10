@@ -1,30 +1,25 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
-  ul, li {
+ul,
+li {
   list-style: none;
   margin: 0px;
-  }
+}
 
-  .tabs-container {
-  height: 100%;
+.tabs {
+  // height: 100%;
   font-family: "Nunito", "Helvetica", "sans-serif";
-  margin-left: 20%;
-  }
+  // margin-left: 20%;
+}
 
-  .container {
+.container {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
   max-width: 80%;
   padding: 0 40px;
-  }
+}
 
-  .breadcrumb {
+.breadcrumb {
   display: flex;
   border-radius: 10px;
   margin: auto;
@@ -35,10 +30,9 @@
   transform: translateY(-50%);
   z-index: 1;
   justify-content: start;
-  }
+}
 
-
-  .breadcrumb__item {
+.breadcrumb__item {
   height: 100%;
   background-color: $secondary;
   color: #ffffff;
@@ -53,57 +47,92 @@
   align-items: center;
   font-size: 16px;
   transform: skew(-21deg);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
   margin: 5px;
   padding: 0 40px;
   cursor: pointer;
-  }
+}
 
-
-  .breadcrumb__item:hover {
+.breadcrumb__item:hover {
   background: $hover;
-  color: #FFF;
+  color: #fff;
   box-shadow: 0 2px 5px $box-shadow;
-  }
+}
 
-
-  .breadcrumb__inner {
+.breadcrumb__inner {
   display: flex;
   flex-direction: column;
   margin: auto;
   z-index: 2;
   transform: skew(21deg);
-  }
+}
 
-  .breadcrumb__title {
+.breadcrumb__title {
   font-size: 16px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   text-decoration: none;
   color: white;
-  }
+}
 
-
-  @media all {
+@media all {
   .breadcrumb {
-  height: 35px;
+    height: 35px;
   }
 
-  .breadcrumb__title{
-  font-size: 11px;
+  .breadcrumb__title {
+    font-size: 11px;
   }
   .breadcrumb__item {
-  padding: 0 30px;
+    padding: 0 30px;
   }
-  }
+}
 
-  @media all and (max-width: 710px) {
+@media all and (max-width: 710px) {
   .breadcrumb {
-  height: 30px;
+    height: 30px;
   }
   .breadcrumb__item {
-  padding: 0 20px;
+    padding: 0 20px;
+  }
+}
+
+.upper-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 40px;
+
+  .tabs {
+    display: flex;
   }
 
+  .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    background-color: $secondary;
+    padding: 0 10px;
+    transform: skew(-22deg);
+    border-radius: 8px 6px;
+    transition: 0.25s;
+    border: none; // This is fucking stupid
+
+    p {
+      text-transform: uppercase;
+      transform: skew(22deg);
+      margin: 0;
+      color: white;
+    }
+
+    &:hover {
+      background-color: $hover;
+      cursor: pointer;
+    }
   }
+
+  .invite {
+    width: 170px;
+  }
+}

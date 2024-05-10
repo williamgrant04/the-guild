@@ -1,62 +1,59 @@
 <%# TABS BEGIN %>
-<div class="main-container"; style="background-image: url('cl_image_tag(@guild.image.key')";>
-  <div class="container mt-5">
-    <div data-controller="clipboard" class="d-flex flex-row-reverse">
-    <%# invite a member only appears if the current_user = guilde.member %>
-    <% if @guild.owner == current_user do %>
-      <input data-clipboard-target="source" type="text" value='http://localhost:3000/invite/<%=@guild.join_code%>' readonly class="mb-5 d-none">
-      <button data-action="clipboard#copy" class="btn btn-secondary mt-2">Invite a member</button>
-      <% end %>
+<div class="main-container">
+  <div class="upper-container">
+    <div class="tabs">
+      <div class="tab">
+        <p>Members</p>
+      </div>
+      <div class="tab">
+        <p>Chat</p>
+      </div>
+      <div class="tab">
+        <p>Events</p>
+      </div>
+    </div>
+
+    <% if @guild.owner == current_user.member %>
+      <button data-controller="clipboard" data-action="click->clipboard#copy" data-clipboard-code-value="<%= @guild.join_code %>" class="tab invite">
+        <p>Invite a member</p>
+      </button>
     <% end %>
-    </div>
-    <div class="tabs-container">
-      <ul class="breadcrumb">
-        <li class="breadcrumb__item breadcrumb__item-firstChild">
-          <span class="breadcrumb__inner">
-          <%# <span class="breadcrumb__title">Members</span> %>
-          <%=link_to "Member", guild_path(@guild), class: "breadcrumb__title"%>
-          </span>
-        </li>
-        <li class="breadcrumb__item">
-          <span class="breadcrumb__inner">
-          <%# <span class="breadcrumb__title">Chat</span> %>
-          <%=link_to "Chat", guild_path(@guild), class: "breadcrumb__title"%>
-          </span>
-        </li>
-        <li class="breadcrumb__item">
-          <span class="breadcrumb__inner">
-          <%= link_to "Events", guild_events_path(@guild), class: "breadcrumb__title" %>
-          </span>
-        </li>
-      </ul>
-    </div>
   </div>
-  <%# TABS END %>
-  <%# --------------------------------------------------------------------------------------------------------- %>
-  <%# ACCORDIONS BEGIN %>
-  <div class="container-accordions">
+
+  <div class="members-container">
     <% @guild.members.each do |member| %>
-      <label class="accordion-wrapper">
-      <input type="checkbox" class="accordion" hidden />
-      <div class="title" style="width: 100%; justify-content: space-between;">
-        <div class="title-image">
-          <%=cl_image_tag(member.profile_image.key, class: "game-logo") %>
-          <strong><%=member.username%></strong>
+      <div class="member" data-controller="member-dropdown">
+        <div class="dropdown" data-action="click->member-dropdown#toggle">
+          <div class="member-details">
+            <%= cl_image_tag member.profile_image.key %>
+            <p><%= member.username %></p>
+          </div>
+
+          <div class="member-actions">
+            <% if @guild.owner == current_user.member || member == current_user.member %>
+              <button class="edit-member" data-action="click->display-modal#show" data-modal="edit_member">
+                <%# This is a p tag for better styling targets %>
+                <p>Edit member</p>
+              </button>
+            <% end %>
+
+            <i class="fa-solid fa-chevron-left dropdown-icon"></i>
+          </div>
         </div>
-        <%=link_to 'edit username', guild_path(@guild), class: "edit-user" %>
+
+        <div class="member-content">
+          <% if member.game_members.any? %>
+            <% member.game_members.each do |gm| %>
+              <div class="game">
+                <%= cl_image_tag gm.game.game_icon.key %>
+                <h3><%= gm.game.name %>: <%= gm.member_game_name %></h3>
+              </div>
+            <% end %>
+          <% else %>
+            <em><%= member.username %> is not a part of any games</em>
+          <% end %>
+        </div>
       </div>
-      <div class="content">
-        <% member.games.each do |game| %>
-        <div class="game-content-info">
-          <%=cl_image_tag(game.game_icon.key, class: "game-logo") %>
-          <p><strong><%=game.name%></strong></p>
-        </div>
-        <div class="gamer-content-info">
-          <p><i class="fa-solid fa-gamepad"></i>  <%=member.get_game_member_name(game)%></p>
-        </div>
-        <% end %>
-      </div>
-      </label>
     <% end %>
   </div>
 </div>

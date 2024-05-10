@@ -1,41 +1,57 @@
-<div class="our-header">
-  <h1>THE GUILD</h1>
-  <% if current_user %>
-    <% if current_user.member.guild.nil? %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Guild - The all-in-one place for guilds!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="our-header">
+      <h1>THE GUILD</h1>
+      <% if current_user %>
+        <% if current_user.member.guild.nil? %>
           <%= link_to "Create a Guild", new_guild_path %>
         <% else %>
           <%= link_to "Your Guild", guild_path(current_user.member.guild) %>
         <% end %>
-  <% else %>
-    <%= link_to "Sign-In", new_user_session_path %>
-  <% end %>
-</div>
-<div class="banner">
-  <div class="banner-text">
-    <h2>The All-in-One Place for Guilds</h2>
-    <h3>Connect, Discover, Conquer</h3>
-  </div>
-</div>
+      <% else %>
+        <%= link_to "Sign-In", new_user_session_path %>
+      <% end %>
+    </div>
+    <div class="banner">
+      <div class="banner-text">
+        <h2>The All-in-One Place for Guilds</h2>
+        <h3>Connect, Discover, Conquer</h3>
+      </div>
+    </div>
 
-<div class="guild-description">
-  <h2>For the greater guild</h2>
-  <p>A guild is a group of players who come together to play games. They can be competitive or casual, but they all share a common goal: to have fun. The Guild is a platform that helps guild members connect, and sign-up for events.</p>
-</div>
+    <div class="guild-description">
+      <h2>For the greater guild</h2>
+      <p>A guild is a group of players who come together to play games. They can be competitive or casual, but they all share a common goal: to have fun. The Guild is a platform that helps guild members connect, and sign-up for events.</p>
+    </div>
 
-<div class="cards">
-  <div class="info-card">
-    <h2>Event Scheduling</h2>
+    <div class="cards">
+      <div class="info-card">
+        <h2>Event Scheduling</h2>
 
-    <p>Easily Schedule events or raids for any of your games, or for the whole guild! Only see the events relevant to you, and sign up easily!</p>
-  </div>
+        <p>Easily Schedule events or raids for any of your games, or for the whole guild! Only see the events relevant to you, and sign up easily!</p>
+      </div>
 
-  <div class="info-card">
-    <h2>Centralized Chat</h2>
-    <p>Easily chat with your guild in one place. No need for multiple servers. A chat for your guild and each game. See the messages you need to and none of the messages you don't.</p>
-  </div>
+      <div class="info-card">
+        <h2>Centralized Chat</h2>
+        <p>Easily chat with your guild in one place. No need for multiple servers. A chat for your guild and each game. See the messages you need to and none of the messages you don't.</p>
+      </div>
 
-  <div class="info-card">
-    <h2>See Guild Members</h2>
-    <p>Have easy access to the details of each guild member. See who plays what game and what they do all in one place. And all without logging in to the game.</p>
-  </div>
-</div>
+      <div class="info-card">
+        <h2>See Guild Members</h2>
+        <p>Have easy access to the details of each guild member. See who plays what game and what they do all in one place. And all without logging in to the game.</p>
+      </div>
+    </div>
+  </body>
+</html>
