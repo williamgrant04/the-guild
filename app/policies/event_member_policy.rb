@@ -5,4 +5,9 @@ class EventMemberPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
+  def create?
+    # Only members of a guild can create an event member
+    user.member.guild == record.event.guild
+  end
 end
