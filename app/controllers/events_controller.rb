@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @all_events = @source.events
     # If the source is an instance of Guild we only find events that are not associated with a game
     @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events
-    @guild = Game.find(params[:game_id]).guild
+    @guild = Game.find(params[:game_id]).guild if params[:game_id]
     @source.is_a?(Guild) ? @all_events = @all_events.where(game: nil) : @all_events.where(game: @source)
   end
 
@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @game = Game.find(params[:game_id]) if params[:game_id]
     @event = Event.new
     @all_events = Event.all
     authorize @event
@@ -34,7 +35,7 @@ class EventsController < ApplicationController
     # This sets the guild for the event if the guild_id is present in the params, if not it sets it to game.guild
     @event.guild = params[:guild_id].present? ? Guild.find(params[:guild_id]) : @event.game.guild
     if @event.save
-      redirect_to root_path, notice: 'Event created successfully'
+      redirect_to @source, notice: 'Event created successfully'
     else
       render :new, status: :unprocessable_entity
     end
