@@ -1,11 +1,28 @@
-<div class="container">
+<%# TABS BEGIN %>
+<div class="main-container">
+  <div class="upper-container">
+    <div class="tabs">
+      <div class="tab">
+        <p><%= link_to "Members", @source.is_a?(Guild) ? guild_path(@guild) : game_path(@source) %></p>
+      </div>
+      <div class="tab">
+        <p>Chat</p>
+      </div>
+      <div class="tab">
+        <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@source) %></p>
+      </div>
+    </div>
+  </div>
+<div>
   <%= month_calendar(attribute: :start, end_attribute: :end, events: @all_events) do |date, events| %>
     <%= date.day %>
     <%# This itterates over the events and puts them on the day if it is contained in the start and end  %>
     <% events.each do |event| %>
       <div>
-        <p><%= link_to event.name, guild_event_path(event.guild, event) %>
+        <%# <button data-action="click->display-modal#show" data-modal="show_event"><%= event.name </button>%>
+        <%= link_to event.name, guild_event_path(event.guild, event) %>
       </div>
     <% end %>
   <% end %>
+</div>
 </div>

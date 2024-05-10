@@ -9,4 +9,8 @@ class GamePolicy < ApplicationPolicy
   def show?
     user.member.games.any?(record)
   end
+
+  def new?
+    user.member.role == "admin"
+  end
 end

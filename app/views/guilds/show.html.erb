@@ -3,13 +3,13 @@
   <div class="upper-container">
     <div class="tabs">
       <div class="tab">
-        <p>Members</p>
+        <p><%= link_to "Members", guild_path(@guild) %></p>
       </div>
       <div class="tab">
         <p>Chat</p>
       </div>
       <div class="tab">
-        <p>Events</p>
+        <p><%= link_to "Events", guild_events_path(@guild) %></p>
       </div>
     </div>
 
