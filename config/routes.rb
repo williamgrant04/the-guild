@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[new create edit update index show]
   end
 
-  resources :event_member, only: %i[new create destroy]
+  resources :event_members, only: %i[create destroy]
 
   get '/invite/:join_code', to: 'guilds#invite'
 
