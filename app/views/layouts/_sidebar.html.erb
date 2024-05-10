@@ -7,7 +7,7 @@
     <% locals[:games].each do |game| %>
       <div class="games-item">
         <%= cl_image_tag(game.game_icon.key) %>
-        <p><%= game.name %></p>
+        <p><%=link_to game.name, game_path(game), class: "game-redirect-btn"%></p>
       </div>
     <% end %>
   </div>
