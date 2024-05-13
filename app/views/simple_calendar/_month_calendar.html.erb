@@ -1,7 +1,6 @@
 <div class="simple-calendar">
   <div class="main-container">
     <div class="upper-container" data-controller="calendar">
-      <div class="tabs">
         <div class="tabs">
           <%= link_to @source.is_a?(Guild) ? guild_path(@guild) : game_path(@source), class: "tab" do %>
             <p>Members</p>
