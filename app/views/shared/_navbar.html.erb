@@ -13,7 +13,8 @@
   <% end %>
 
   <div class="navbar-game-name">
-    <p><%= @game.name %></p>
+    <p><%= @game.name if @game.present? %></p>
+    <p><%= @source.name if @source.is_a?(Game) %></p>
   </div>
 
   <% if current_user %>
