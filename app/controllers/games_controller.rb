@@ -13,14 +13,16 @@ class GamesController < ApplicationController
     @game.guild = @guild
 
     if @game.save
-      redirect_to guild_path @guild, notice: 'Game was successfully created.'
+      redirect_to game_path(@game)
     else
       render :new, status: :unprocessable_entity
     end
+    authorize @game
   end
 
   # GET /games/:id/edit
   def edit
+    authorize @game
   end
 
   # PATCH/PUT /games/:id
@@ -30,6 +32,7 @@ class GamesController < ApplicationController
     else
       render :edit
     end
+    authorize @game
   end
 
   # GET /games/:id
@@ -41,8 +44,10 @@ class GamesController < ApplicationController
 
   # DELETE /games/:id
   def destroy
+    @guild = @game.guild
     @game.destroy
-    redirect_to games_path, notice: 'Game was successfully destroyed.'
+    redirect_to guild_path(@guild), notice: 'Game was successfully destroyed.'
+    authorize @game
   end
 
   private
