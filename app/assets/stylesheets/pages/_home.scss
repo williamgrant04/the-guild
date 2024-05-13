@@ -10,16 +10,18 @@
     padding-top: 1rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
-  a {
+  .actions {
     position: absolute;
     right: 1rem;
     bottom: 1.75rem;
-    text-decoration: none;
-    color: white;
-    background-color: $accent;
-    padding: 4px 8px;
-    border-radius: 8px;
-    font-size: .75em;
+    a {
+      background-color: $accent;
+      text-decoration: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: .75em;
+    }
   }
 }
 

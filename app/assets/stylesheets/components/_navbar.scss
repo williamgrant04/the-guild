@@ -75,10 +75,9 @@
         }
       }
 
-      // &:hover .dropdown-content {
-      //   display: block;
-      //   opacity: 1;
-      // }
+      &:hover {
+        cursor: pointer;
+      }
 
       // .dropdown-content:focus-within {
       //   display: block;

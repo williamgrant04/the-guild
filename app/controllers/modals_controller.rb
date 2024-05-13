@@ -1,10 +1,23 @@
 class ModalsController < ApplicationController
   skip_after_action :verify_authorized
   def get_modal
+
+    # For editing an existing record (has an ID)
     if params[:type] != "undefined" && params[:id] != "undefined"
       render partial: "modals/#{params[:modal]}", locals: { "#{params[:type]}".to_sym => $types[params[:type]].find(params[:id]) }
       return
     end
+
+    # For creating a new record (does not have an ID)
+    if params[:type] != "undefined" && params[:id] == "undefined"
+      render partial: "modals/#{params[:modal]}", locals: { "#{params[:type]}".to_sym => $types[params[:type]].new }
+      return
+    end
+
+    if params[:modal] == "undefined" && params[:id] != "undefined"
+      raise "Cannot have an ID without a type"
+    end
+
     render partial: "modals/#{params[:modal]}"
   end
 end
