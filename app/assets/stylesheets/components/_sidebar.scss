@@ -29,6 +29,7 @@
   color: $offwhite;
   transition: ease 0.5s;
   font-size: 22px;
+  font-family: $body-font;
 
   &:hover {
     background-color: #8d4c90;
@@ -79,6 +80,7 @@
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-family: $body-font;
 
   .add-game {
     background-color: #D49B54;
@@ -102,4 +104,5 @@
 .game-redirect-btn {
   text-decoration: none;
   color: white;
+  font-family: $headers-font;
 }
