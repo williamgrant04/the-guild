@@ -1,4 +1,7 @@
 .simple-calendar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   .calendar-heading, th {
     background-color: $primary;
     color: white;
@@ -36,5 +39,17 @@
       height: 50px;
       width: 50px;
     }
+  }
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  font-family: $body-font;
+  width: 18%;
+  align-items: center;
+  font-size: 20px;
+  i {
+    font-size: 125%;
   }
 }
