@@ -1,15 +1,15 @@
 <div class="modal-wrapper">
   <div class="modal-content">
     <div class="container">
-    <%= simple_form_for [current_user.member.guild, @game] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :game_banner %>
-    <%= f.input :game_icon %>
-    <div class="actions">
-      <%= f.submit "Create Game", class: "btn btn-primary" %>
-      <%= link_to "Cancel", @guild, class: "btn btn-secondary" %>
-    </div>
+    <%= simple_form_for [current_user.member.guild, game] do |f| %>
+    <%= f.input :name, label_html: { class: 'modal-label'} %>
+    <%= f.input :game_banner, label_html: { class: 'modal-label'}%>
+    <%= f.input :game_icon, label_html: { class: 'modal-label'} %>
+    <div class="modal-actions">
+      <%= f.submit "Create Game", class: "modal-create-btn" %>
+      <button class="modal-cancel-btn" data-action="click->display-modal#hide">Cancel</button>
   <% end %>
+  </div>
   </div><!-- Your modal stuff goes here -->
   </div>
 </div>
