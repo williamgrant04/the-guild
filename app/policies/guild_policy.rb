@@ -27,4 +27,9 @@ class GuildPolicy < ApplicationPolicy
     # Only the guild owner can edit the guild
     user.member == record.owner
   end
+
+  def invite?
+    # Only users who aren't already in guilds can accept invites
+    user.member.guild == nil
+  end
 end
