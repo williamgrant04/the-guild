@@ -1,5 +1,4 @@
 <%# TABS BEGIN %>
-
   <%= month_calendar(attribute: :start, end_attribute: :end, events: @all_events) do |date, events| %>
     <%= date.day %>
     <%# This itterates over the events and puts them on the day if it is contained in the start and end  %>
@@ -9,6 +8,5 @@
         <%= link_to event.name, guild_event_path(event.guild, event) %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
 </div>

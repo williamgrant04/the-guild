@@ -118,6 +118,8 @@ li {
     border-radius: 8px 6px;
     transition: 0.25s;
     border: none; // This is fucking stupid
+    text-decoration: none;
+    font-family: $body-font;
 
     p {
       text-transform: uppercase;
@@ -131,13 +133,12 @@ li {
       cursor: pointer;
     }
 
-    a {
-      color: white;
-      text-decoration: none;
-      font-family: $body-font;
-    }
-
   }
+
+  .add {
+    background-color: $accent;
+  }
+
   .delete {
     background-color: $tertiary;
   }

@@ -20,12 +20,12 @@
   <body>
     <%= render "shared/flashes" %>
     <div id="nav">
-      <%= render "shared/navbar", locals: { guild: @guild || @game&.guild || @event.guild } %>
+      <%= render "shared/navbar", locals: { guild: @guild || @game&.guild || @event&.guild || @chatroom.guild } %>
     </div>
 
     <% if !@guild.nil? || !@game.nil? %>
       <div id="page" data-controller="display-modal">
-        <%= render "layouts/sidebar", locals: { guild: @guild || @game.guild, games: @games || @guild&.games || @game.guild.games } %>
+        <%= render "layouts/sidebar", locals: { guild: @guild || @game.guild, games: @games || @guild&.games || @game&.guild&.games || @chatroom.guild.games } %>
         <% if !@game.nil? %>
           <div id="content" style="background-image: url(<%= @game.game_banner.key ? cl_image_path(@game.game_banner.key) : '' %>);">
             <%= yield %>

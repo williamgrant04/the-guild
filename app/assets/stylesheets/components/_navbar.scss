@@ -32,12 +32,13 @@
     align-items: center;
     justify-content: center;
     width: 140px;
+    margin-top: 5px;
 
     img {
-      height: 65px;
-      width: 65px;
+      height: 50px;
+      width: 50px;
       border-radius: 50%;
-      margin-right: 10px;
+      margin-top: -10px;
     }
 
     .dropdown {
@@ -94,8 +95,20 @@
   font-size: 1.25rem;
 }
 
-.nav-username {
-  display: flex;
-  justify-content: center;
-  height: 100%;
+.nav-username p {
+  margin: 0;
+}
+
+.navbar-game-name {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.navbar-game-name p {
+  margin: 0;
+  font-family: $title-font;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: $accent;
+  margin-left: 80px;
 }

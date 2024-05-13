@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     resources :events, only: %i[new create edit update index show]
   end
   resources :games, only: %i[edit update destroy show] do
-    resources :game_members, only: %i[new create]
+    resources :game_members, only: %i[new create edit update destroy]
     resources :events, only: %i[new create edit update index show]
+  end
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
   end
 
   resources :event_members, only: %i[create destroy]

@@ -1,6 +1,17 @@
 <div class="main-container">
   <div class="upper-container">
     <div class="tabs">
+      <%= link_to game_path(@game), class: "tab" do %>
+        <p>Members</p>
+      <% end %>
+      <%= link_to chatroom_path(@game.chatroom), class: "tab" do %>
+        <p>Chat</p>
+      <% end %>
+      <%= link_to @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "tab" do %>
+        <p>Events</p>
+      <% end %>
+    </div>
+    <div class="tabs">
       <div class="tab">
         <p>Members</p>
       </div>
@@ -11,35 +22,46 @@
         <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "event-btn" %></p>
       </div>
     </div>
-
+    <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
         <div class="tab">
-          <p><%= link_to "Edit", edit_game_path(@game) if current_user.member.role == "admin" %></p>
+          <p><%= link_to "Edit", edit_game_path(@game) %></p>
         </div>
         <div class="delete tab">
-          <p><%= link_to "Delete", game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" } if current_user.member.role == "admin" %></p>
+          <p><%= link_to "Delete", game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" } %></p>
+        </div>
+        <div class="add tab">
+          <p><%= link_to "Add Member", new_game_game_member_path(@game) %></p>
         </div>
       </div>
     </div>
+    <% end %>
   </div>
 
       <div class="card-container">
         <div class="game-member-card-wrapper">
         <% @game.members.each do |member| %>
           <div class="game-member-card">
-            <div class="card-image img"; style="background-image: url(<%=cl_image_path(member.profile_image.key)%>">
-              <%# <%= cl_image_tag(member.profile_image.key, class: "img") %>
+            <div class="action-wrapper">
+              <% if current_user.member == member || current_user.member.role == "admin" %>
+              <div class="edit">
+                  <%= link_to "Edit", edit_game_game_member_path(@game, member) %>
+              </div>
+              <div class="remove">
+                  <%= link_to "Remove", game_game_member_path(@game, member), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} if current_user.member.role == "admin" %>
+                  <%= link_to "Leave", game_game_member_path(@game, member), data: { turbo_method: :delete, turbo_confirm: "Leave this game?"} if current_user.member == member && current_user.member.role != "admin" %>
+              </div>
+              <% end %>
             </div>
+
+            <div class="card-image img"; style="background-image: url(<%=cl_image_path(member.profile_image.key)%>">
+            </div>
+
             <% member.game_members.each do |gm| %>
               <div class="card-details">
                 <p><strong><i class="fa-solid fa-gamepad"></i>  <%= member.username %> - <%= gm.member_game_name %></strong></p>
-              <%# <% if member.role == "admin" do %>
                 <p class="role-title"><i class="fa-solid fa-crown"></i> <%=member.role %></p>
-                <%# <% else %>
-                <%# <p class="role-title"><%=member.role %>
-                <%# <% end %>
-              <%# <% end %>
                 <p class="role-title"><i class="fa-solid fa-shield-halved"></i> <%=gm.details %></p>
             </div>
             <% end %>

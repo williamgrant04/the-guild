@@ -1,0 +1,23 @@
+.message {
+  p { margin: 0; } // Oh my god I hate this stupid default styling bullshit
+  width: 100%;
+  margin: 10px 0;
+  background-color: $secondary;
+  color: white;
+  border-radius: 6px 0 0 6px;
+
+  .message-details {
+    display: flex;
+    font-style: italic;
+    padding: 5px 20px 0;
+
+    p:first-child {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+
+  .message-content {
+    padding: 10px 20px;
+  }
+}
