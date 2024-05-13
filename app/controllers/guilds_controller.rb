@@ -2,6 +2,7 @@ class GuildsController < ApplicationController
   def show
     @guild = Guild.find(params[:id])
     @games = @guild.games
+    @members = @guild.members
     authorize @guild
   end
 

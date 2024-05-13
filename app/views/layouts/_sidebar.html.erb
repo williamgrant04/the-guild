@@ -4,16 +4,26 @@
   </div>
   <span class="line"></span>
   <div class="games-list">
-    <% locals[:games].each do |game| %>
-      <div class="games-item">
-        <%= cl_image_tag(game.game_icon.key) %>
-        <p><%=link_to game.name, game_path(game), class: "game-redirect-btn"%></p>
-      </div>
+    <% if current_user.member.role == "admin" %>
+      <% locals[:games].each do |game| %>
+        <%= link_to game_path(game), class: "games-item" do %>
+          <%= cl_image_tag(game.game_icon.key) %>
+          <p><%= game.name %></p>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% current_user.member.game_members.each do |game_member| %>
+        <%= link_to game_path(game_member.game), class: "games-item" do %>
+          <%= cl_image_tag(game_member.game.game_icon.key) %>
+          <p><%= game_member.game.name %></p>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <span class="line"></span>
-  <div class="game-btn">
-
-    <%=link_to "Add a game", new_guild_game_path(locals[:guild]), class: "add-game" %>
-  </div>
+  <% if current_user.member.role == "admin" %>
+    <div class="game-btn">
+      <%=link_to "Add a game", new_guild_game_path(locals[:guild]), class: "add-game" %>
+    </div>
+  <% end %>
 </div>

@@ -2,15 +2,15 @@
 <div class="main-container">
   <div class="upper-container">
     <div class="tabs">
-      <div class="tab">
-        <p><%= link_to "Members", guild_path(@guild) %></p>
-      </div>
-      <div class="tab">
+      <%= link_to guild_path(@guild), class: "tab" do %>
+        <p>Members</p>
+      <% end %>
+      <%= link_to chatroom_path(@guild.chatroom), class: "tab" do %>
         <p>Chat</p>
-      </div>
-      <div class="tab">
-        <p><%= link_to "Events", guild_events_path(@guild) %></p>
-      </div>
+      <% end %>
+      <%= link_to guild_events_path(@guild), class: "tab" do %>
+        <p>Events</p>
+      <% end %>
     </div>
 
     <% if @guild.owner == current_user.member %>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="members-container">
-    <% @guild.members.each do |member| %>
+    <% @members.each do |member| %>
       <div class="member" data-controller="member-dropdown">
         <div class="dropdown" data-action="click->member-dropdown#toggle">
           <div class="member-details">

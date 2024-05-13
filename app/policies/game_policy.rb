@@ -7,11 +7,11 @@ class GamePolicy < ApplicationPolicy
   end
 
   def show?
-    user.member.games.any?(record) || user.member.role == "admin"
+    user.member.games.any?(record) || user.member.role == "admin" # Admins should be able to see all games
   end
 
   def new?
-    user.member.role == "admin"
+    create?
   end
 
   def create?

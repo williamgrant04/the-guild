@@ -1,6 +1,17 @@
 <div class="main-container">
   <div class="upper-container">
     <div class="tabs">
+      <%= link_to game_path(@game), class: "tab" do %>
+        <p>Members</p>
+      <% end %>
+      <%= link_to chatroom_path(@game.chatroom), class: "tab" do %>
+        <p>Chat</p>
+      <% end %>
+      <%= link_to @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "tab" do %>
+        <p>Events</p>
+      <% end %>
+    </div>
+    <div class="tabs">
       <div class="tab">
         <p>Members</p>
       </div>

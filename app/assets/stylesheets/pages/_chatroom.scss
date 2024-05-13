@@ -1,0 +1,78 @@
+.chat-container {
+  background-color: $offwhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 6px;
+  width: 90%;
+  height: 87.6%; // No idea why this is happening
+  padding: 20px;
+  margin: 0 auto;
+
+  .messages {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #613269;
+      border-radius: 25px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $offwhite;
+      border: 1px solid $hover;
+      border-radius: 25px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #bc6dc0;
+    }
+  }
+
+  .new_message {
+    padding-top: 20px;
+    display: flex;
+    width: 100%;
+
+    .message_content { width: 100%; }
+
+    .form-control {
+      border: 1px solid $secondary;
+      border-right: none;
+      border-radius: 6px 0 0 6px;
+
+      &:focus {
+        box-shadow: none;
+        border: 1px solid $primary;
+        border-right: none;
+      }
+    }
+
+    .mb-3 {
+      margin: 0 !important; // I hate you bootstrap
+    }
+
+    button {
+      width: 100px;
+      border: 1px solid $secondary;
+      border-left: none;
+      background-color: $accent;
+      border-radius: 0 6px 6px 0;
+      height: 38px;
+
+      &:hover {
+        background-color: $highlight;
+      }
+    }
+  }
+}
