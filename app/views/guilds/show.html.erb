@@ -21,7 +21,7 @@
   </div>
 
   <div class="members-container">
-    <% @guild.members.each do |member| %>
+    <% @members.each do |member| %>
       <div class="member" data-controller="member-dropdown">
         <div class="dropdown" data-action="click->member-dropdown#toggle">
           <div class="member-details">

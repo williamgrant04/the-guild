@@ -1,0 +1,47 @@
+<div class="main-container">
+  <div class="upper-container">
+    <div class="tabs">
+      <div class="tab">
+        <p><%= link_to "Members", guild_path(@guild) %></p>
+      </div>
+      <div class="tab">
+        <p>Chat</p>
+      </div>
+      <div class="tab">
+        <p><%= link_to "Events", guild_events_path(@guild) %></p>
+      </div>
+    </div>
+
+    <% if @guild.owner == current_user.member %>
+      <button data-controller="clipboard" data-action="click->clipboard#copy" data-clipboard-code-value="<%= @guild.join_code %>" class="tab invite">
+        <p>Invite a member</p>
+      </button>
+    <% end %>
+  </div>
+
+  <div class="chat-container">
+    <div class="messages">
+      <% @messages.each do |message| %>
+        <div class="message">
+          <p><%= message.member.username %></p>
+          <p><%= message.created_at.strftime("%e %b %Y, %l:%M %p") %></p>
+          <p><%= message.content %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="new-message">
+      <%= simple_form_for [@chatroom, @message], html: { autocomplete: "off" } do |f| %>
+        <%=
+          # Get rid of the stupid fucking lastpass icon holy shit
+          f.input :content,
+          as: :string,
+          label: false,
+          placeholder: "Message ##{@chatroom.name}"
+        %>
+        <%= button_tag type: :submit do %>
+          <i class='fa-regular fa-paper-plane' aria-label="Send message"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

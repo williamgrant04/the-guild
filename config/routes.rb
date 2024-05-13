@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :events, only: %i[new create edit update index show]
   end
 
-  resources :chatrooms, only: :show
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   resources :event_members, only: %i[create destroy]
 
