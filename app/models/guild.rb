@@ -6,6 +6,7 @@ class Guild < ApplicationRecord
   has_many :members
   has_many :games
   has_many :events
+  has_one :chatroom
 
   belongs_to :owner, class_name: 'Member', foreign_key: 'member_id'
 

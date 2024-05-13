@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_070850) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
-    t.bigint "guild_id", null: false
+    t.bigint "guild_id"
     t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
