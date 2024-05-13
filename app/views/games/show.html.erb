@@ -11,29 +11,19 @@
         <p>Events</p>
       <% end %>
     </div>
-    <div class="tabs">
-      <div class="tab">
-        <p>Members</p>
-      </div>
-      <div class="tab">
-        <p>Chat</p>
-      </div>
-      <div class="tab">
-        <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "event-btn" %></p>
-      </div>
-    </div>
+
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-        <div class="tab">
-          <p><%= link_to "Edit", edit_game_path(@game) %></p>
-        </div>
-        <div class="delete tab">
-          <p><%= link_to "Delete", game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" } %></p>
-        </div>
-        <div class="add tab">
-          <p><%= link_to "Add Member", new_game_game_member_path(@game) %></p>
-        </div>
+        <%= link_to edit_game_path(@game), class: "tab" do %>
+          <p>Edit</p>
+        <% end %>
+        <%= link_to game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" }, class: "delete tab" do %>
+          <p>Delete</p>
+        <% end %>
+        <%= link_to new_game_game_member_path(@game), class: "tab add" do %>
+          <p>Add member</p>
+        <% end %>
       </div>
     </div>
     <% end %>
