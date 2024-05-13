@@ -20,7 +20,7 @@ class GameMembersController < ApplicationController
   end
 
   def edit
-    @game_member = @game.game_members.find_by(member: params[:id])
+    @game_member = @game.game_members.find(params[:id])
     authorize @game_member
   end
 
@@ -36,7 +36,7 @@ class GameMembersController < ApplicationController
   end
 
   def destroy
-    @game_member = @game.game_members.find_by(member: params[:id])
+    @game_member = @game.game_members.find(params[:id])
     @game_member.destroy
     if current_user.member.role == 'admin'
       redirect_to @game
