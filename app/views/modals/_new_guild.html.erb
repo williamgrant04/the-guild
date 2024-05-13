@@ -1,0 +1,14 @@
+<div class="modal-wrapper">
+  <div class="modal-content">
+    <div class="container">
+      <div class="form">
+        <%=simple_form_for guild do |f| %>
+          <%=f.input :name, label_html: { class: 'modal-label'} %>
+          <%=f.input :image, as: :file, label_html: { class: 'modal-label'} %>
+          <%=f.input :icon, as: :file, label_html: { class: 'modal-label'} %>
+          <%=f.submit class: 'modal-create-btn' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,20 +16,21 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="display-modal">
     <div class="our-header">
       <h1>THE GUILD</h1>
       <div class="actions">
         <% if current_user %>
           <% if current_user.member.guild.nil? %>
-              <%= link_to "Create a Guild", new_guild_path %>
-              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Log out?"} %>
+              <%#= link_to "Create a Guild", new_guild_path %>
+              <button data-action="click->display-modal#show" data-modal="new_guild" data-modal="new_guild" data-type="guild">Create a guild</button>
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Log out?"} %>
           <% else %>
-            <%= link_to "Your Guild", guild_path(current_user.member.guild) %>
-            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Log out?"} %>
+            <%= button_to "Your Guild", guild_path(current_user.member.guild), method: :get %>
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Log out?"} %>
           <% end %>
         <% else %>
-          <%= link_to "Sign-In", new_user_session_path %>
+          <%= button_to "Sign-In", new_user_session_path %>
         <% end %>
       </div>
     </div>
@@ -62,5 +63,6 @@
         <p>Have easy access to the details of each guild member. See who plays what game and what they do all in one place. And all without logging in to the game.</p>
       </div>
     </div>
+    <div class="modal-root" data-display-modal-target="root"></div>
   </body>
 </html>
