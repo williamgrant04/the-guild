@@ -79,12 +79,15 @@
 
     p {
       margin: 0;
+      font-family: $headers-font;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
     img {
       margin: 0 10px;
-      height: 50px;
-      width: 50px;
+      height: 70px;
+      width: 70px;
       border-radius: 50%;
     }
 
@@ -168,5 +171,5 @@
     object-fit: cover;
   }
 
-  h3 { margin: 0 10px; }
+  h3 { margin: 0 10px; font-size: 1.45rem;}
 }

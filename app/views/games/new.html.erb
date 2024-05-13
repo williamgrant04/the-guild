@@ -1,3 +1,5 @@
+<div class="container">
+
 <%= simple_form_for [@guild, @game] do |f| %>
   <%= f.input :name %>
   <%= f.input :game_banner %>
@@ -7,3 +9,5 @@
     <%= link_to "Cancel", @guild, class: "btn btn-secondary" %>
   </div>
 <% end %>
+
+</div>

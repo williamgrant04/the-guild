@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_many :event_members
+  has_many :event_members, dependent: :destroy
   has_many :members, through: :event_members
 
   belongs_to :guild
