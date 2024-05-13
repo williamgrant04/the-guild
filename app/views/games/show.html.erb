@@ -31,30 +31,29 @@
 
   <div class="card-container">
     <div class="game-member-card-wrapper">
-      <% @game.members.each do |member| %>
+     <% @game_members.each do |gm| %>
         <div class="game-member-card">
           <div class="action-wrapper">
-            <% if current_user.member == member || current_user.member.role == "admin" %>
+            <% if current_user.member == gm.member || current_user.member.role == "admin" %>
             <div class="edit">
-                <%= link_to "Edit", edit_game_game_member_path(@game, member) %>
+                <%= link_to "Edit", edit_game_game_member_path(@game, gm) %>
             </div>
             <div class="remove">
-                <%= link_to "Remove", game_game_member_path(@game, member), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} if current_user.member.role == "admin" %>
-                <%= link_to "Leave", game_game_member_path(@game, member), data: { turbo_method: :delete, turbo_confirm: "Leave this game?"} if current_user.member == member && current_user.member.role != "admin" %>
+                <%= link_to "Remove", game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} if current_user.member.role == "admin" %>
+                <%= link_to "Leave", game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Leave this game?"} if current_user.member == gm.member && current_user.member.role != "admin" %>
             </div>
             <% end %>
           </div>
 
-          <div class="card-image img" style="background-image: url(<%= cl_image_path(member.profile_image.key) %>">
+          <div class="card-image img" style="background-image: url(<%= cl_image_path(gm.member.profile_image.key) %>">
           </div>
 
-          <% member.game_members.each do |gm| %>
             <div class="card-details">
-              <p><strong><i class="fa-solid fa-gamepad"></i>  <%= member.username %> - <%= gm.member_game_name %></strong></p>
-              <p class="role-title"><i class="fa-solid fa-crown"></i> <%= member.role %></p>
+              <p><strong><i class="fa-solid fa-gamepad"></i>  <%= gm.member.username %> - <%= gm.member_game_name %></strong></p>
+              <p class="role-title"><i class="fa-solid fa-crown"></i> <%= gm.member.role %></p>
               <p class="role-title"><i class="fa-solid fa-shield-halved"></i> <%= gm.details %></p>
           </div>
-          <% end %>
+
         </div>
       <% end %>
     </div>
