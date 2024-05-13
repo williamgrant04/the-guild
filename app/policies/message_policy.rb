@@ -7,6 +7,6 @@ class MessagePolicy < ApplicationPolicy
   end
 
   def create?
-    user.member.guild == record.chatroom.guild # This is stupid but it works
+    user.member.guild == record.chatroom.guild || user.member.guild == record.chatroom.game.guild # This is stupid but it works
   end
 end

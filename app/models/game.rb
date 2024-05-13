@@ -10,4 +10,12 @@ class Game < ApplicationRecord
 
   validates :name, uniqueness: { scope: :guild_id }
   validates :game_icon, :name, presence: true
+
+  after_create :create_chatroom
+
+  private
+
+  def create_chatroom
+    Chatroom.create(name: self.name, game: self)
+  end
 end

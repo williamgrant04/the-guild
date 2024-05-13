@@ -11,6 +11,10 @@ class GamePolicy < ApplicationPolicy
   end
 
   def new?
+    create?
+  end
+
+  def create?
     user.member.role == "admin"
   end
 end

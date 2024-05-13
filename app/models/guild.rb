@@ -1,7 +1,8 @@
 class Guild < ApplicationRecord
-  # conditions
+  # Before callbacks
   before_validation :generate_code
   before_save :add_owner_as_member
+
   # associations
   has_many :members
   has_many :games
@@ -12,10 +13,14 @@ class Guild < ApplicationRecord
 
   has_one_attached :image
   has_one_attached :icon
+
   # validations
   validates :name, :join_code, presence: true
   validates :name, uniqueness: true
   validates :join_code, uniqueness: true
+
+  # After callbacks
+  after_create :create_chatroom
 
   protected
 
@@ -30,5 +35,9 @@ class Guild < ApplicationRecord
     self.owner.guild = self
     self.owner.role = "admin"
     self.owner.save
+  end
+
+  def create_chatroom
+    Chatroom.create(name: self.name, guild: self)
   end
 end
