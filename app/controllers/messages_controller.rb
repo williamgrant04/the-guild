@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
       )
       head :ok
     else
-      # This sucks ass for this but it works for now, not going to spend 2 hours making it look better, no time
+      # This sucks for this but it works for now, not going to spend 2 hours making it look better, no time
       render "chatrooms/show", status: :unprocessable_entity
     end
   end
