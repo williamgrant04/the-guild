@@ -2,16 +2,17 @@
   <div class="main-container">
     <div class="upper-container" data-controller="calendar">
       <div class="tabs">
-        <div class="tab">
-          <p><%= link_to "Members", @source.is_a?(Guild) ? guild_path(@guild) : game_path(@source) %></p>
+        <div class="tabs">
+          <%= link_to @source.is_a?(Guild) ? guild_path(@guild) : game_path(@source), class: "tab" do %>
+            <p>Members</p>
+          <% end %>
+          <%= link_to chatroom_path(@source.chatroom), class: "tab" do %>
+            <p>Chat</p>
+          <% end %>
+          <%= link_to @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@source), class: "tab" do %>
+            <p>Events</p>
+          <% end %>
         </div>
-        <div class="tab">
-          <p>Chat</p>
-        </div>
-        <div class="tab">
-          <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@source) %></p>
-        </div>
-      </div>
     <div class="calendar-heading">
       <div class="calendar-info">
       <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.abbr_month_names')[start_date.month] %> <%= start_date.year %></time>
