@@ -11,7 +11,19 @@
         <p><%= link_to "Events", @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "event-btn" %></p>
       </div>
     </div>
+
+    <div class="game-buttons">
+      <div class="tabs">
+        <div class="tab">
+          <p><%= link_to "Edit", edit_game_path(@game) if current_user.member.role == "admin" %></p>
+        </div>
+        <div class="delete tab">
+          <p><%= link_to "Delete", game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" } if current_user.member.role == "admin" %></p>
+        </div>
+      </div>
     </div>
+  </div>
+
       <div class="card-container">
         <div class="game-member-card-wrapper">
         <% @game.members.each do |member| %>
