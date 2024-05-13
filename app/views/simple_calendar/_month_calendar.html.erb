@@ -1,9 +1,32 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.abbr_month_names')[start_date.month] %> <%= start_date.year %></time>
-
-  </div>
-
+  <div class="main-container">
+    <div class="upper-container" data-controller="calendar">
+      <div class="tabs">
+        <div class="tabs">
+          <%= link_to @source.is_a?(Guild) ? guild_path(@guild) : game_path(@source), class: "tab" do %>
+            <p>Members</p>
+          <% end %>
+          <%= link_to chatroom_path(@source.chatroom), class: "tab" do %>
+            <p>Chat</p>
+          <% end %>
+          <%= link_to @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@source), class: "tab" do %>
+            <p>Events</p>
+          <% end %>
+        </div>
+    <div class="calendar-heading">
+      <div class="calendar-info">
+      <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.abbr_month_names')[start_date.month] %> <%= start_date.year %></time>
+      </div>
+      <div class="nav-button">
+        <%= link_to new_polymorphic_path([@source, :event]), class: "nav-plus-button" do %>
+          <i class="fa-solid fa-calendar-plus"></i>
+        <% end %>
+      </div>
+    </div>
+      <%# <p id="datetime" data-calendar-target="datetime" data-action="calendar#time"></p> %>
+    </div>
+    <div class="calendar-month">
+    </div>
   <table class="table">
     <thead>
       <tr>
@@ -32,11 +55,6 @@
         <% end %>
       </div>
 
-      <div class="nav-button">
-        <%= link_to new_polymorphic_path([@source, :event]), class: "nav-button" do %>
-          <i class="fa-solid fa-plus"></i>
-        <% end %>
-      </div>
 
       <div class="nav-button">
       <%= link_to calendar.url_for_next_view, class: "nav-button" do %>
@@ -49,3 +67,4 @@
 </div>
 <%# t('simple_calendar.previous', default: 'Previous') Default nav button for previous month %>
 <%# t('simple_calendar.next', default: 'Next') Default nav button for next month %>
+</div>
