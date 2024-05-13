@@ -3,6 +3,7 @@ class ChatroomsController < ApplicationController
 
   def show
     @guild = @chatroom.guild || @chatroom.game.guild
+    @game = @chatroom.game
     @messages = @chatroom.messages.includes(:member).order(created_at: :asc).limit(100).reverse
     @message = Message.new
     authorize @chatroom
