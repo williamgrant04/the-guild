@@ -17,4 +17,16 @@ class GamePolicy < ApplicationPolicy
   def create?
     user.member.role == "admin"
   end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    user.member.role == "admin"
+  end
+
+  def destroy?
+    user.member.role == "admin"
+  end
 end

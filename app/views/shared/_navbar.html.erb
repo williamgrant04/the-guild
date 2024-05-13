@@ -11,8 +11,17 @@
       <% end %>
     </div>
   <% end %>
+
+  <div class="navbar-game-name">
+    <p><%= @game.name if @game.present? %></p>
+    <p><%= @source.name if @source.is_a?(Game) %></p>
+  </div>
+
   <% if current_user %>
     <div class="profile">
+    <div class="nav-username">
+      <p class="navbar-username"><%= current_user.member.username %></p>
+    </div>
       <div class="dropdown" >
         <div class="nav-user-picture" data-action="click->navbar-dropdown#toggleDropdown">
           <%= cl_image_tag(current_user.member.profile_image.key, alt: "Profile Picture", height: "40px", width: "40px") %>
