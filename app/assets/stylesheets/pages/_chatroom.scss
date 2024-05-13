@@ -8,27 +8,32 @@
   height: 90%;
   padding: 20px;
   margin: 0 auto;
-  overflow-y: scroll;
-  overflow-x: hidden;
 
-  &::-webkit-scrollbar {
-    width: 10px;
+  .messages {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #613269;
+      border-radius: 25px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $offwhite;
+      border: 1px solid $hover;
+      border-radius: 25px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #bc6dc0;
+    }
   }
 
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #613269;
-    border-radius: 25px;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $offwhite; // Just because of the colour, not actually a hover effect
-    border-radius: 25px;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #bc6dc0;
-  }
 }
