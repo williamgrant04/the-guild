@@ -1,13 +1,13 @@
 <div class="main-container">
   <div class="upper-container">
     <div class="tabs">
-      <%= link_to @guild || @source.is_a?(Guild) ? guild_path(@guild) : game_path(@chatroom.game), class: "tab" do %>
+      <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@chatroom.game), class: "tab" do %>
         <p>Members</p>
       <% end %>
       <%= link_to chatroom_path(@chatroom), class: "tab" do %>
         <p>Chat</p>
       <% end %>
-      <%= link_to @guild || @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@chatroom.game), class: "tab" do %>
+      <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@chatroom.game), class: "tab" do %>
         <p>Events</p>
       <% end %>
     </div>
