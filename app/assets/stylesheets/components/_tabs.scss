@@ -137,6 +137,9 @@ li {
 
   .add {
     background-color: $accent;
+    p {
+      color: black;
+    }
   }
 
   .delete {
