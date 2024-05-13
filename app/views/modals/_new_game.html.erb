@@ -1,0 +1,15 @@
+<div class="modal-wrapper">
+  <div class="modal-content">
+    <div class="container">
+    <%= simple_form_for [current_user.member.guild, @game] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :game_banner %>
+    <%= f.input :game_icon %>
+    <div class="actions">
+      <%= f.submit "Create Game", class: "btn btn-primary" %>
+      <%= link_to "Cancel", @guild, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+  </div><!-- Your modal stuff goes here -->
+  </div>
+</div>
