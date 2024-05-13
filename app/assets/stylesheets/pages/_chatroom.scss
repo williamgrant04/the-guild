@@ -50,6 +50,12 @@
       border: 1px solid $secondary;
       border-right: none;
       border-radius: 6px 0 0 6px;
+
+      &:focus {
+        box-shadow: none;
+        border: 1px solid $primary;
+        border-right: none;
+      }
     }
 
     .mb-3 {
@@ -63,6 +69,10 @@
       background-color: $accent;
       border-radius: 0 6px 6px 0;
       height: 38px;
+
+      &:hover {
+        background-color: $highlight;
+      }
     }
   }
 }
