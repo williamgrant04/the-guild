@@ -23,7 +23,9 @@
   <span class="line"></span>
   <% if current_user.member.role == "admin" %>
     <div class="game-btn">
-      <%=link_to "Add a game", new_guild_game_path(locals[:guild]), class: "add-game" %>
+      <button class="add-game" data-action="click->display-modal#show" data-modal="new_game" data-type="game">Add a game</button>
+      <%# <%=link_to "Add a game", new_guild_game_path(locals[:guild]), class: "add-game" %>
     </div>
   <% end %>
+<div class="modal-root" data-display-modal-target="root"></div>
 </div>

@@ -1,6 +1,7 @@
 .modal-root {
   position: absolute;
   top: 0;
+  z-index: 100;
 }
 
 .modal-wrapper {
@@ -11,10 +12,80 @@
   height: 100vh;
   width: 100vw;
 
+
   .modal-content {
     display: flex;
     flex-direction: column;
     background-color: $primary;
-    width: 75%;
+    width: 50%;
+    height: 40%;
+    border-radius: $border-radius-xl;
+    border: solid 2px white;
+    .container {
+      margin-top: 15px;
+    }
+  }
+}
+
+.modal-label {
+  font-family: $body-font;
+  color: white;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  .modal-create-btn {
+    padding: 3px 0px 3px 0px;
+    color: white;
+    width: 30%;
+    height: 100%;
+    background-color: $accent;
+    border-radius: $border-radius;
+    outline: none;
+    border: none;
+    font-family: $headers-font;
+    &:hover {
+      background-color: $highlight;
+      color: white;
+      outline: none;
+      border: none;
+    }
+    &:active {
+      outline: none;
+      border: none;
+    }
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  .modal-cancel-btn {
+    padding: 3px 0px 3px 0px;
+    width: 30%;
+    height: 100%;
+    background-color: $secondary;
+    border-radius: $border-radius;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: $tertiary;
+    font-family: $headers-font;
+    outline: none;
+    border: none;
+    &:hover {
+      background-color: #c66568;
+      color: white;
+      outline: none;
+      border: none;
+    }
+    &:active {
+      outline: none;
+      border: none;
+    }
+    &:focus {
+      outline: none;
+      border: none;
+    }
   }
 }
