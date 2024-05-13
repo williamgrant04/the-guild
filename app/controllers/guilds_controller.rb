@@ -43,14 +43,21 @@ class GuildsController < ApplicationController
 
   def invite
     # I dont think this needs authorization, but we'll find out later I suppose
+
+    # If the user isn't signed in, or doesn't have an account
+    if !user_signed_in?
+      redirect_to new_user_session_path
+    end
+
     @guild = Guild.find_by(join_code: params[:join_code])
+    authorize @guild
     @member = current_user.member
-    # @member.guild = @guild
-    # if @member.save
-    #   redirect_to guild_path(@guild)
-    # else
-    #   root_path()
-    # end
+    @member.guild = @guild
+    if @member.save
+      redirect_to guild_path(@guild)
+    else
+      redirect_to root_path
+    end
   end
 
   private
