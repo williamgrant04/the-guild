@@ -23,7 +23,7 @@
         <% if current_user %>
           <% if current_user.member.guild.nil? %>
               <%#= link_to "Create a Guild", new_guild_path %>
-              <button data-action="click->display-modal#show" data-modal="new_guild" data-modal="new_guild" data-type="guild">Create a guild</button>
+              <button data-action="click->display-modal#show" data-modal="new_guild" data-type="guild">Create a guild</button>
               <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Log out?"} %>
           <% else %>
             <%= button_to "Your Guild", guild_path(current_user.member.guild), method: :get %>
