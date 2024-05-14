@@ -9,7 +9,7 @@
     <%= f.input :profile_image, label_html: { class: 'modal-label'} if member == current_user.member%>
     <div class="modal-actions">
       <%= f.submit "Okay", class: "modal-create-btn" %>
-      <button class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
+      <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
   <% end %>
   </div>
   </div><!-- Your modal stuff goes here -->

@@ -10,7 +10,7 @@
     <%= f.input :game_icon, label_html: { class: 'modal-label'} %>
     <div class="modal-actions">
       <%= f.submit "Create Game", class: "modal-create-btn" %>
-      <button class="modal-cancel-btn" data-action="click->display-modal#hide">Cancel</button>
+      <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Cancel</button>
   <% end %>
   </div>
   </div><!-- Your modal stuff goes here -->
