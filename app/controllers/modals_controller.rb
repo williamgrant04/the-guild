@@ -5,8 +5,8 @@ class ModalsController < ApplicationController
     if params[:source] == "guild" && params[:type] == "event"
       render partial: "modals/#{params[:modal]}", locals: { source: Guild.find(params[:sourceid]), event: Event.new }
       return
-    elsif params[:source] == "game" && params[:type] == "event"
-      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event: Event.new }
+    elsif params[:source] == "game" && (params[:type] == "event" || params[:type] == "gamemember")
+      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event: Event.new, game_member:GameMember.new }
       return
     end
 

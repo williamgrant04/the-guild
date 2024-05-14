@@ -19,8 +19,9 @@ export default class extends Controller {
   }
 
   hide(e) {
-    e.preventDefault() // Because fuck HTML forms
-    if (e.target === this.rootTarget.querySelector(".modal-wrapper") || e.type === "keyup") {
+    console.log(e)
+    if (e.target === this.rootTarget.querySelector(".modal-wrapper") || e.type === "keyup" || e.target === this.rootTarget.querySelector("#close")) {
+      e.preventDefault() // Because fuck HTML forms
       this.rootTarget.innerHTML = ""
     }
   }
