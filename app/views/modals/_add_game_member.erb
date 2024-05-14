@@ -5,8 +5,9 @@
       <h3>Summon a new member</h3>
     </div>
     <%= simple_form_for [source, game_member] do |f| %>
+    <% members = source.guild.members.reject { |member| source.members.include?(member)}  %>
     <% names =[] %>
-    <% source.guild.members.each{ |member| names << member.username }%>
+    <% members.each{ |member| names << member.username }%>
     <%= f.input :member, collection: names, label: "Which member?", label_html: { class: 'modal-label'} %>
     <%= f.input :member_game_name, label_html: { class: 'modal-label'}%>
     <%= f.input :details, label_html: { class: 'modal-label'} %>
