@@ -10,4 +10,8 @@ class EventMemberPolicy < ApplicationPolicy
     # Only members of a guild can create an event member
     user.member.guild == record.event.guild
   end
+
+  def destroy?
+    user.member.guild == record.event.guild
+  end
 end

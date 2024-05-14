@@ -4,8 +4,18 @@
   <p>Event description: <%= @event.description %><br>
   Starts at: <%= @event.start.strftime("%l:%M %p, %b%e") %><br>
   Ends at: <%= @event.end.strftime("%l:%M %p, %b%e") %></p>
-  <%= button_to "Sign up", event_members_path, params: {event: params[:id], member: current_user.member} %>
+  <% if @event.members.include?(current_user.member) %>
+    <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"}%>
+  <% else %>
+    <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user } %>
+    <%#= button_to "Sign up", event_members_path, params: {event: params[:id], member: current_user.member} %>
+  <% end %>
+  <%= button_to "Edit",  edit_event_path(@event), method: :get %>
+  <%= button_to "Delete", event_path(@event), method: :delete, data: {turbo_confirm: "Delete this event?"}%>
+
   </div>
+
+
 
   <div class="event-members w-50 m-2">
     <h2>Members attending</h2>

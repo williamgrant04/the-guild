@@ -13,6 +13,15 @@ class EventMembersController < ApplicationController
     authorize @event_member
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event_member = @event.event_members.find_by(member: current_user.member)
+    if @event_member.destroy
+      redirect_back(fallback_location: @source)
+    end
+    authorize @event_member
+  end
+
   private
 
   def set_source
