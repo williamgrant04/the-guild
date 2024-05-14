@@ -45,6 +45,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @all_events = Event.all
+    authorize @event
   end
 
   def update
@@ -55,6 +56,15 @@ class EventsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+    authorize @event
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.destroy
+      redirect_to guild_path(current_user.member.guild)
+    end
+    authorize @event
   end
 
   private
