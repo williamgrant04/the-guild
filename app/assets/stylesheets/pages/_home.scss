@@ -29,21 +29,20 @@
   }
 }
 
-.banner {
+.main-banner {
   height: 75vh;
   width: 100%;
-  background: rgba(0, 0, 0, .5) url("guild-banner-1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
   background-blend-mode: darken;
   display: flex;
   justify-content: center;
   align-items: center;
+
   h2, h3 {
     color: white;
     text-align: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
+
   h2 {
     font-size: 3em;
   }
@@ -55,14 +54,16 @@
 
 .guild-description {
   color: white;
-  padding: 2rem;
+  padding: 2.5rem;
   text-align: center;
-  background-color: $secondary;
-  padding-bottom: 0;
+  background-color: $accent;
+
   h2 {
-    font-size: 1.5em;
+    font-size: 1.75em;
   }
+
   p {
+    font-size: 1.5em;
     margin-bottom: 0;
   }
 }
@@ -84,4 +85,111 @@
       margin-bottom: 1rem;
     }
   }
+}
+
+.info-banner {
+  overflow: hidden;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-blend-mode: darken;
+  position: relative;
+}
+
+.info-banner::before {
+  content: '';
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  box-shadow: inset 0 0 10px 20px $accent;
+}
+
+.join-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $accent;
+  color: white;
+  background-blend-mode: darken;
+  padding: 60px 0;
+
+  h2 {
+    font-size: 2.75rem;
+  }
+
+  p {
+    font-size: 2.25rem;
+  }
+
+  button {
+    font-size: 1.75rem;
+    background-color: $primary;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $hover;
+      border-radius: 4px;
+    }
+  }
+}
+
+.text-wrapper {
+  background-color: $hover;
+  padding: 20px 40px;
+  border-radius: 8px;
+  width: 60%;
+  text-align: center;
+
+  h2 {
+    font-size: 1.75em;
+    color: white;
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    color: white;
+  }
+}
+
+.spacer {
+  height: 10vh;
+  background-color: $accent;
+}
+
+.parallax {
+  min-height: 500px;
+
+  background-attachment: fixed !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.banner-image {
+  background: rgba(0, 0, 0, .5) url('guild-banner-1.jpg');
+}
+
+.event-image {
+  background: rgba(0, 0, 0, .5) url('event_scheduling.png');
+}
+
+.chat-image {
+  background: rgba(0, 0, 0, .5) url('chat.png');
+}
+
+.member-image {
+  background: rgba(0, 0, 0, .5) url('members.png');
 }
