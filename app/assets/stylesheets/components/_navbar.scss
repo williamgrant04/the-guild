@@ -99,8 +99,10 @@
 }
 
 .navbar-game-name {
+  display: flex;
   flex-grow: 1;
   text-align: center;
+  justify-content: center;
 }
 
 .navbar-game-name p {
