@@ -46,7 +46,7 @@
             <% member.game_members.each do |gm| %>
               <div class="game">
                 <%= cl_image_tag gm.game.game_icon.key %>
-                <h3><%= gm.game.name %>: <%= gm.member_game_name %></h3>
+                <h3><%= gm.game.name %> <br> <span class="in-game-name">as: <%= gm.member_game_name %></span></h3>
               </div>
             <% end %>
           <% else %>
