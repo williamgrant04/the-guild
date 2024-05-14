@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     # This sets the guild for the event if the guild_id is present in the params, if not it sets it to game.guild
     @event.guild = params[:guild_id].present? ? Guild.find(params[:guild_id]) : @event.game.guild
     if @event.save
-      redirect_to @source, notice: 'Event created successfully'
+      redirect_back fallback_location: root_path, notice: 'Event created successfully'
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @all_events = Event.all
     if @event.update(event_params)
-      redirect_to root_path, notice: 'Event updated successfully'
+      redirect_back fallback_location: root_path, notice: 'Event updated successfully'
     else
       render :edit, status: :unprocessable_entity
     end
