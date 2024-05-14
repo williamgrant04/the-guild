@@ -1,6 +1,9 @@
 <div class="modal-wrapper">
   <div class="modal-content">
     <div class="container">
+    <div class="modal-title">
+      <h3>Edit <%=member.username%></h3>
+    </div>
     <%= simple_form_for(member) do |f| %>
     <%= f.input :username, label_html: { class: 'modal-label'} %>
     <%= f.input :profile_image, label_html: { class: 'modal-label'} if member == current_user.member%>
