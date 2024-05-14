@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
-
+  resources :members, only: %i[update]
   resources :event_members, only: %i[create destroy]
 
   get '/invite/:join_code', to: 'guilds#invite'

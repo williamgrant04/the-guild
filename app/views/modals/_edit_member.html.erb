@@ -1,5 +1,14 @@
 <div class="modal-wrapper">
   <div class="modal-content">
-    <h1>Edit member</h1>
+    <div class="container">
+    <%= simple_form_for(member) do |f| %>
+    <%= f.input :username, label_html: { class: 'modal-label'} %>
+    <%= f.input :profile_image, label_html: { class: 'modal-label'} if member == current_user.member%>
+    <div class="modal-actions">
+      <%= f.submit "Okay", class: "modal-create-btn" %>
+      <button class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
+  <% end %>
+  </div>
+  </div><!-- Your modal stuff goes here -->
   </div>
 </div>
