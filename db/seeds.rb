@@ -10,7 +10,7 @@ pic = 1
   User.create!(email: Faker::Internet.email,
                password: "password",
                password_confirmation: "password",
-               member_details: { username: Faker::Name.name })
+               member_details: { username: Faker::Name.first_name })
 end
 User.create!(email: "email@email.email",
              password: "password",
@@ -91,8 +91,8 @@ end
 Game.all.each do |game|
   Event.create(name: "Raid night",
                description: "Lets progress!",
-               start: DateTime.now,
-               end: DateTime.now + 1.hour,
+               start: DateTime.now + 4.hours,
+               end: DateTime.now + 8.hours,
                guild: game.guild,
                game: game)
 end
@@ -110,13 +110,19 @@ puts "Done"
 puts "-----------------"
 
 puts "Adding members to games"
+names = %w[Darksareth Helmare Clambour Phantom Easydeeps Sullen Theclaw Warskullz Zisa Zephyr
+           Adrokable Erosion Audionaut GabbaGoal Narutoes KrypticKiller Popples Sliver SloppyJoe TheDude
+           ThickFilA TickleMeElmo VeniBuckets Ceril Duke Exile Mishap Noodlez Rhonin SlickRick
+           Aethyric AgentSmith Aranko Bishop DanceMonkey Echozelle FootLoop Goontek Hookpunch Mystrel]
 rank = ["Member", "Officer", "Recruit", "Veteran"]
 Member.all.each do |member|
   Game.all.each do |game|
+    name = names.sample
     GameMember.create(member: member,
                       game: game,
-                      member_game_name: Faker::Fantasy::Tolkien.character,
+                      member_game_name: name,
                       details: rank.sample)
+    names.delete(name)
   end
 end
 puts "Done"
