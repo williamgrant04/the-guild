@@ -16,9 +16,11 @@
     color: white;
   }
 
-  a {
+  button {
     text-decoration: none;
     color: $accent;
+    border: none;
+    background-color: transparent;
   }
   nav {
     display: flex;

@@ -2,6 +2,14 @@ class ModalsController < ApplicationController
   skip_after_action :verify_authorized
   def get_modal
 
+    if params[:source] == "guild" && params[:type] == "event"
+      render partial: "modals/#{params[:modal]}", locals: { source: Guild.find(params[:sourceid]), event: Event.new }
+      return
+    elsif params[:source] == "game" && params[:type] == "event"
+      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event: Event.new }
+      return
+    end
+
     # For editing an existing record (has an ID)
     if params[:type] != "undefined" && params[:id] != "undefined"
       render partial: "modals/#{params[:modal]}", locals: { "#{params[:type]}".to_sym => $types[params[:type]].find(params[:id]) }

@@ -18,7 +18,7 @@
     flex-direction: column;
     background-color: $primary;
     width: 50%;
-    height: 40%;
+    // height: 40%;
     border-radius: $border-radius-xl;
     border: solid 2px white;
     .container {
@@ -45,6 +45,7 @@
     outline: none;
     border: none;
     font-family: $headers-font;
+    margin-bottom: 8px;
     &:hover {
       background-color: $highlight;
       color: white;

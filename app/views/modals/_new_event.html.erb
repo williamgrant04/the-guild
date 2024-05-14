@@ -1,0 +1,17 @@
+<div class="modal-wrapper">
+  <div class="modal-content">
+    <div class="container">
+      <div class="form">
+        <%= simple_form_for [source, event] do |f| %>
+          <%= f.input :name, label_html: { class: 'modal-label'} %>
+          <%= f.input :description, label_html: { class: 'modal-label'} %>
+          <%= f.input :start, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field", label_html: { class: 'modal-label'} %>
+          <%= f.input :end, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field", label_html: { class: 'modal-label'} %>
+          <div class="modal-actions">
+          <%= f.submit "Create", class: "modal-create-btn" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
