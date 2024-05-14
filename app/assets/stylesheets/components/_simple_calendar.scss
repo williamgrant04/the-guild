@@ -42,11 +42,13 @@
       border-radius: 50%;
       height: 50px;
       width: 50px;
+      text-decoration: none;
     }
   }
 
-  a {
+  .event {
     text-decoration: none;
+    color: $accent;
   }
 }
 
