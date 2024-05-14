@@ -6,6 +6,7 @@
     background-color: $primary;
     color: white;
   }
+
   td {
     background-color: white;
     color: black;
@@ -22,6 +23,7 @@
     border: none;
     background-color: transparent;
   }
+
   nav {
     display: flex;
     justify-content: center;
@@ -41,6 +43,10 @@
       height: 50px;
       width: 50px;
     }
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 

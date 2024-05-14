@@ -1,3 +1,5 @@
+<%# THIS JUST RENDERS THE CALENDAR. TO EDIT THE EVENTS INDEX PAGE GO TO SIMPLE CALENDAR MONTH_CALENDAR %>
+
 <%# TABS BEGIN %>
   <%= month_calendar(attribute: :start, end_attribute: :end, events: @all_events) do |date, events| %>
     <%= date.day %>
@@ -9,4 +11,3 @@
       </div>
     <% end %>
   <% end %>
-

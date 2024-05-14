@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @games = Game.all
+    @game = Game.find(params[:game_id]) if params[:game_id]
     @event = Event.new
     @events = policy_scope(Event)
     # This finds all events for the source (game or guild)
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     @games = Game.all
     @event_member = EventMember.new
     @event = Event.find(params[:id])
+    @game = @event.game
     authorize @event
   end
 

@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 export default class extends Controller {
   static values = { chatId: Number } // TS flashbacks
-  static targets = [ "messages" ]
+  static targets = [ "messages", "input" ]
 
   connect() {
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
@@ -20,6 +20,12 @@ export default class extends Controller {
 
   resetForm(event) {
     event.target.reset()
+  }
+
+  noBlank(event) {
+    if (this.inputTarget.value === "") {
+      event.preventDefault()
+    }
   }
 
   disconnect() {
