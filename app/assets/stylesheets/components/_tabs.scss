@@ -152,7 +152,12 @@ li {
   .invite {
     width: 170px;
     background-color: $accent;
-    color: black;
+    p {
+      color: black;
+    }
+    &:hover {
+      background-color: white;
+    }
   }
 }
 
