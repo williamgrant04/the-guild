@@ -32,6 +32,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.start = event_params[:start].to_datetime
+    @event.end = event_params[:end].to_datetime
     # This sets the game for the event if the game_id is present in the params
     @event.game = Game.find(params[:game_id]) if params[:game_id].present?
     # This sets the guild for the event if the guild_id is present in the params, if not it sets it to game.guild
@@ -52,8 +54,10 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.start = event_params[:start].to_datetime
+    @event.end = event_params[:end].to_datetime
     @all_events = Event.all
-    if @event.update(event_params)
+    if @event.update(event_params.except(:start, :end))
       redirect_back fallback_location: root_path, notice: 'Event updated successfully'
     else
       render :edit, status: :unprocessable_entity
