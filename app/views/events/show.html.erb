@@ -1,28 +1,56 @@
-<div class="d-flex" style="background-color: purple; color: white">
-  <div class="event-info w-50 m-2">
-  <h1><%= @event.name %></h1>
-  <p>Event description: <%= @event.description %><br>
-  Starts at: <%= @event.start.strftime("%l:%M %p, %b%e") %><br>
-  Ends at: <%= @event.end.strftime("%l:%M %p, %b%e") %></p>
-  <% if @event.members.include?(current_user.member) %>
-    <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"}%>
-  <% else %>
-    <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user } %>
-    <%#= button_to "Sign up", event_members_path, params: {event: params[:id], member: current_user.member} %>
-  <% end %>
-  <%= button_to "Edit",  edit_event_path(@event), method: :get %>
-  <%= button_to "Delete", event_path(@event), method: :delete, data: {turbo_confirm: "Delete this event?"}%>
+<div class="main-container">
+  <div class="upper-container">
+      <div class="tabs">
+        <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@chatroom.game), class: "tab" do %>
+          <p>Members</p>
+        <% end %>
+        <%= link_to chatroom_path(@source.chatroom), class: "tab" do %>
+          <p>Chat</p>
+        <% end %>
+        <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@chatroom.game), class: "tab" do %>
+          <p>Events</p>
+        <% end %>
+      </div>
 
+    <% if current_user.member.role == "admin" %>
+    <div class="game-buttons">
+      <div class="tabs">
+        <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
+         <p>Edit</p>
+        <% end %>
+        <%= link_to event_path(@event), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Delete this event?" }, class: "delete tab" do %>
+         <p>Delete</p>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
 
-
-
-  <div class="event-members w-50 m-2">
-    <h2>Members attending</h2>
-    <ul>
-      <% @event.members.each do |member| %>
-        <li><%= member.username %> - <%= member.role %></li>
-      <% end %>
-    </ul>
+  <div class="event-info">
+    <div class="event-name">
+        <h1><%= @event.name %></h1>
+        <p>Event description: <%= @event.description %><br>
+        Starts at: <%= @event.start.strftime("%l:%M %p, %b%e") %><br>
+        Ends at: <%= @event.end.strftime("%l:%M %p, %b%e") %></p>
+        <% if @event.members.include?(current_user.member) %>
+        <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"},class: "in-button"%>
+        <% else %>
+          <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user },class: "out-button" %>
+        <%#= button_to "Sign up", event_members_path, params: {event: params[:id], member: current_user.member} %>
+        <% end %>
+    </div>
+    <div class="event-members">
+      <h2>Members attending</h2>
+      <div class="event-member-grid-container">
+      <div class="event-member-grid">
+        <% @event.members.each do |member| %>
+        <div class="event-member-list">
+          <%= cl_image_tag member.profile_image.key, class: "member-image" %>
+          <div class="event-member-name"><%= member.username %></div>
+        </div>
+        <% end %>
+      </div>
+      </div>
+    </div>
   </div>
-</div>
+  </div>
