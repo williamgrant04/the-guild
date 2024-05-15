@@ -162,3 +162,27 @@
     }
   }
 }
+
+.card-plus-button {
+  width: 250px;
+  height: 350px;
+  border-radius: 16px;
+  background-color: $primary;
+  overflow: hidden;
+  border: 0px;
+  transition: 0.3s ease;
+  p {
+    font-size: 100px;
+  }
+  &:hover {
+    background-color: $secondary;
+    p {
+    }
+  }
+  &:active {
+    background-color: $hover;
+    p {
+      font-size: 80px;
+    }
+  }
+}
