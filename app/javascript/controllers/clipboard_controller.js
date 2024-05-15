@@ -10,7 +10,7 @@ export default class extends Controller {
     this.element.innerHTML = "<p>Copied!</p>"
 
     setTimeout(() => {
-      this.element.innerHTML = "<p>Invite a member</p>"
+      this.element.innerHTML = "<p>Invite</p>"
     }, 2000)
   }
 }

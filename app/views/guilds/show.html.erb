@@ -3,19 +3,19 @@
   <div class="upper-container">
     <div class="tabs">
       <%= link_to guild_path(@guild), class: "tab" do %>
-        <p>Members</p>
+        <p><i class="fa-solid fa-user-group"></i> Members</p>
       <% end %>
       <%= link_to chatroom_path(@guild.chatroom), class: "tab" do %>
-        <p>Chat</p>
+        <p><i class="fa-solid fa-comments"></i> Chat</p>
       <% end %>
       <%= link_to guild_events_path(@guild), class: "tab" do %>
-        <p>Events</p>
+        <p><i class="fa-solid fa-calendar-days"></i> Events</p>
       <% end %>
     </div>
 
     <% if @guild.owner == current_user.member %>
       <button data-controller="clipboard" data-action="click->clipboard#copy" data-clipboard-code-value="<%= @guild.join_code %>" class="tab invite">
-        <p>Invite a member</p>
+        <p>Invite</p>
       </button>
     <% end %>
   </div>
@@ -33,7 +33,7 @@
             <% if @guild.owner == current_user.member || member == current_user.member %>
               <button class="edit-member" data-action="click->display-modal#show" data-type="member" data-modal="edit_member" data-id="<%=member.id%>">
                 <%# This is a p tag for better styling targets %>
-                <p>Edit member</p>
+                <p><i class="fa-regular fa-pen-to-square"></i></p>
               </button>
             <% end %>
 

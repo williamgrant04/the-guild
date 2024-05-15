@@ -2,27 +2,26 @@
   <div class="upper-container">
     <div class="tabs">
       <%= link_to game_path(@game), class: "tab" do %>
-        <p>Members</p>
+        <p><i class="fa-solid fa-user-group"></i> Members</p>
       <% end %>
       <%= link_to chatroom_path(@game.chatroom), class: "tab" do %>
-        <p>Chat</p>
+        <p><i class="fa-solid fa-comments"></i> Chat</p>
       <% end %>
       <%= link_to @source.is_a?(Guild) ? guild_events_path(@guild) : game_events_path(@game), class: "tab" do %>
-        <p>Events</p>
+        <p><i class="fa-solid fa-calendar-days"></i> Events</p>
       <% end %>
     </div>
 
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-      <button class="tab" data-action="click->display-modal#show" data-modal="edit_game" data-type="game" data-id="<%=@game.id%>">Edit Game</button>
+      <button class="tab editbtn" data-action="click->display-modal#show" data-modal="edit_game" data-type="game" data-id="<%=@game.id%>"><p>EDIT GAME</p></button>
         <%# <%= link_to edit_game_path(@game), class: "tab" do %>
           <%# <p>Edit</p> %>
         <%# end %>
         <%= link_to game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game? This will also remove all members from this game." }, class: "delete tab" do %>
           <p>Delete Game</p>
         <% end %>
-        <button class="tab add" data-action="click->display-modal#show" data-modal="add_game_member" data-type="gamemember" data-source="game" data-sourceid="<%=@game.id%>"><p>ADD MEMBER</p></button>
         <%# <%= link_to new_game_game_member_path(@game), class: "tab add" do %>
           <%# <p>Add member</p> %>
         <%# <% end %>
@@ -37,14 +36,21 @@
           <div class="action-wrapper">
             <% if current_user.member == gm.member || current_user.member.role == "admin" %>
             <div class="edit">
-            <button class="modal-create-btn" data-action="click->display-modal#show" data-modal="edit_game_member" data-type="gamemember" data-source="game" data-id="<%=gm.id%>" data-sourceid="<%=gm.game.id%>">Edit</button>
+            <button class="modal-create-btn" data-action="click->display-modal#show" data-modal="edit_game_member" data-type="gamemember" data-source="game" data-id="<%=gm.id%>" data-sourceid="<%=gm.game.id%>"><i class="fa-regular fa-pen-to-square"></i></button>
                 <%# <%= link_to "Edit", edit_game_game_member_path(@game, gm) %>
             </div>
             <div class="remove">
-                <%= link_to "Remove", game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} if current_user.member.role == "admin" %>
-                <%= link_to "Leave", game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Leave this game?"} if current_user.member == gm.member && current_user.member.role != "admin" %>
-            </div>
+            <% if current_user.member.role == "admin" %>
+              <%= link_to game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+              <% elsif current_user.member == gm.member && current_user.member.role != "admin" %>
+              <%= link_to game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Leave this game?"} do %>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <% end %>
             <% end %>
+            </div>
+          <% end %>
           </div>
 
           <div class="card-image img" style="background-image: url(<%= cl_image_path(gm.member.profile_image.key) %>">
@@ -58,6 +64,7 @@
 
         </div>
       <% end %>
+      <button class="card-plus-button" data-action="click->display-modal#show" data-modal="add_game_member" data-type="gamemember" data-source="game" data-sourceid="<%=@game.id%>"><p><i class="fa-solid fa-plus"></i></p></button>
     </div>
   </div>
 </div>

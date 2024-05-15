@@ -59,8 +59,26 @@
   width: 18%;
   align-items: center;
   font-size: 20px;
+}
+
+.calendar-heading-month {
+  display: flex;
+  justify-content: space-between;
+  font-family: $body-font;
+  width: 18%;
+  align-items: center;
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
   i {
-    font-size: 125%;
+    font-size: 150%;
+  }
+  .calendar-info {
+    display: flex;
+    width: 130px;
+    time {
+      width: 110px;
+    }
   }
 }
 
