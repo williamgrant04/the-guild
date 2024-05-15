@@ -19,10 +19,10 @@
         <%# <%= link_to edit_game_path(@game), class: "tab" do %>
           <%# <p>Edit</p> %>
         <%# end %>
-        <%= link_to game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game?" }, class: "delete tab" do %>
-          <p>Delete</p>
+        <%= link_to game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game? This will also remove all members from this game." }, class: "delete tab" do %>
+          <p>Delete Game</p>
         <% end %>
-        <button class="tab add" data-action="click->display-modal#show" data-modal="add_game_member" data-type="gamemember" data-source="game" data-sourceid="<%=@game.id%>">ADD MEMBER</button>
+        <button class="tab add" data-action="click->display-modal#show" data-modal="add_game_member" data-type="gamemember" data-source="game" data-sourceid="<%=@game.id%>"><p>ADD MEMBER</p></button>
         <%# <%= link_to new_game_game_member_path(@game), class: "tab add" do %>
           <%# <p>Add member</p> %>
         <%# <% end %>
