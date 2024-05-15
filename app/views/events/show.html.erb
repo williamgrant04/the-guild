@@ -11,6 +11,8 @@
           <p>Events</p>
         <% end %>
       </div>
+
+    <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
         <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
@@ -21,6 +23,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
   </div>
 
   <div class="event-info">
