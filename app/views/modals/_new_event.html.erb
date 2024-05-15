@@ -11,7 +11,8 @@
           <%= f.input :start, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field", label_html: { class: 'modal-label'} %>
           <%= f.input :end, as: :string, input_html: { data: { controller: "event-time-set"} }, class: "input-field", label_html: { class: 'modal-label'} %>
           <div class="modal-actions">
-          <%= f.submit "Create", class: "modal-create-btn" %>
+          <%= f.submit "Yep", class: "modal-create-btn" %>
+          <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
           </div>
         <% end %>
       </div>
