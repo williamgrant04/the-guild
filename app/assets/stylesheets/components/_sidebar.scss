@@ -39,7 +39,34 @@
   }
 }
 
+.scroll-wrapper {
+  overflow-y: auto;
+  direction: rtl;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #613269;
+    border-radius: 25px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $offwhite; // Just because of the colour, not actually a hover effect
+    border-radius: 25px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #bc6dc0;
+  }
+}
+
 .games-list {
+  direction: ltr;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,7 +118,8 @@
     background-color: #D49B54;
     text-decoration: none;
     width: 60%;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: none;
     padding: 10px 0px 10px 0px;
     text-align: center;
     color: black;
