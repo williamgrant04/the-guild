@@ -19,7 +19,7 @@ class GuildsController < ApplicationController
     if @guild.save
       redirect_to guild_path(@guild)
     else
-      render :new, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: 'Guild could not be created'
     end
   end
 

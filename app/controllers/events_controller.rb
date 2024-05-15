@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_back fallback_location: root_path, notice: 'Event created successfully'
     else
-      render :new, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: 'Event could not be created'
     end
     authorize @event
   end
@@ -78,6 +78,7 @@ class EventsController < ApplicationController
   def set_source
     if params[:game_id]
       @source = Game.find(params[:game_id])
+      @guild = Game.find(params[:game_id]).guild
     elsif params[:guild_id]
       @guild = Guild.find(params[:guild_id])
       @source = Guild.find(params[:guild_id])

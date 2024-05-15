@@ -13,9 +13,9 @@ class GamesController < ApplicationController
     @game.guild = @guild
 
     if @game.save
-      redirect_to game_path(@game)
+      redirect_back(fallback_location: root_path, notice: 'Game added successfully')
     else
-      render :new, status: :unprocessable_entity
+      redirect_back(fallback_location: root_path, alert: 'Game could not be added')
     end
     authorize @game
   end
@@ -28,9 +28,9 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/:id
   def update
     if @game.update(game_params)
-      redirect_to game_path(@game), notice: 'Game was successfully updated.'
+      redirect_back(fallback_location: root_path, notice: 'Game updated successfully')
     else
-      render :edit
+      redirect_back(fallback_location: root_path, alert: 'Game could not be updated')
     end
     authorize @game
   end
@@ -46,7 +46,7 @@ class GamesController < ApplicationController
   def destroy
     @guild = @game.guild
     @game.destroy
-    redirect_to guild_path(@guild), notice: 'Game was successfully destroyed.'
+    redirect_to guild_path(@guild), notice: 'Game was successfully deleted.'
     authorize @game
   end
 
