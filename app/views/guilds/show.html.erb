@@ -31,7 +31,7 @@
 
           <div class="member-actions">
             <% if @guild.owner == current_user.member || member == current_user.member %>
-              <button class="edit-member" data-action="click->display-modal#show" data-modal="edit_member">
+              <button class="edit-member" data-action="click->display-modal#show" data-type="member" data-modal="edit_member" data-id="<%=member.id%>">
                 <%# This is a p tag for better styling targets %>
                 <p>Edit member</p>
               </button>
@@ -46,7 +46,7 @@
             <% member.game_members.each do |gm| %>
               <div class="game">
                 <%= cl_image_tag gm.game.game_icon.key %>
-                <h3><%= gm.game.name %>: <%= gm.member_game_name %></h3>
+                <h3><%= gm.game.name %> <br> <span class="in-game-name">as: <%= gm.member_game_name %></span></h3>
               </div>
             <% end %>
           <% else %>

@@ -6,6 +6,7 @@
     background-color: $primary;
     color: white;
   }
+
   td {
     background-color: white;
     color: black;
@@ -16,10 +17,13 @@
     color: white;
   }
 
-  a {
+  button {
     text-decoration: none;
     color: $accent;
+    border: none;
+    background-color: transparent;
   }
+
   nav {
     display: flex;
     justify-content: center;
@@ -38,7 +42,13 @@
       border-radius: 50%;
       height: 50px;
       width: 50px;
+      text-decoration: none;
     }
+  }
+
+  .event {
+    text-decoration: none;
+    color: $accent;
   }
 }
 
@@ -52,4 +62,9 @@
   i {
     font-size: 125%;
   }
+}
+
+.table {
+  align-self: center;
+  width: 90%;
 }

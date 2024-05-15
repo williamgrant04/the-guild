@@ -17,8 +17,10 @@
       <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.abbr_month_names')[start_date.month] %> <%= start_date.year %></time>
       </div>
       <div class="nav-button">
-        <%= link_to new_polymorphic_path([@source, :event]), class: "nav-plus-button" do %>
+        <% if current_user.member.role == "admin" %>
+        <button data-source="<%= @source.class.to_s.downcase %>" data-sourceid="<%= @source.id %>" data-action="click->display-modal#show" data-modal="new_event" data-type="event" method="get">
           <i class="fa-solid fa-calendar-plus"></i>
+        </button>
         <% end %>
       </div>
     </div>

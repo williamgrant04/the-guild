@@ -1,7 +1,7 @@
 .main-container {
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: $primary;
+  background-color: $thegrey;
   height: 80%;
   width: 80%;
   border-radius: 16px;
@@ -172,4 +172,11 @@
   }
 
   h3 { margin: 0 10px; font-size: 1.45rem;}
+}
+
+.in-game-name {
+  color: $secondary;
+  text-decoration: solid;
+  font-family: $body-font;
+  font-size: 18px;
 }

@@ -1,0 +1,21 @@
+<div class="modal-wrapper">
+  <div class="modal-content">
+    <div class="container">
+    <div class="modal-title">
+      <h3>Summon a new member</h3>
+    </div>
+    <%= simple_form_for [source, game_member] do |f| %>
+    <% members = source.guild.members.reject { |member| source.members.include?(member)}  %>
+    <% names =[] %>
+    <% members.each{ |member| names << member.username }%>
+    <%= f.input :member, collection: names, label: "Which member?", label_html: { class: 'modal-label'} %>
+    <%= f.input :member_game_name, label_html: { class: 'modal-label'}%>
+    <%= f.input :details, label_html: { class: 'modal-label'} %>
+    <div class="modal-actions">
+      <%= f.button :submit, "Summon", class: "modal-create-btn" %>
+      <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
+    </div>
+  <% end %>
+  </div><!-- Your modal stuff goes here -->
+  </div>
+</div>

@@ -8,7 +8,9 @@ export default class extends Controller {
     // So much data
     const type = e.currentTarget.dataset.type
     const id = e.currentTarget.dataset.id
-    fetch(`${window.location.origin}/modals/${e.currentTarget.dataset.modal}/?type=${type}&id=${id}`)
+    const source = e.currentTarget.dataset.source // Patched fix for event source
+    const sourceid = e.currentTarget.dataset.sourceid // Patched fix for event source
+    fetch(`${window.location.origin}/modals/${e.currentTarget.dataset.modal}/?type=${type}&id=${id}&source=${source}&sourceid=${sourceid}`)
       .then(res => res.text())
       .then((html) => {
         this.rootTarget.innerHTML = html
@@ -17,7 +19,9 @@ export default class extends Controller {
   }
 
   hide(e) {
-    if (e.target === this.rootTarget.querySelector(".modal-wrapper") || e.type === "keyup") {
+    console.log(e)
+    if (e.target === this.rootTarget.querySelector(".modal-wrapper") || e.type === "keyup" || e.target === this.rootTarget.querySelector("#close")) {
+      e.preventDefault() // Because fuck HTML forms
       this.rootTarget.innerHTML = ""
     }
   }

@@ -2,9 +2,9 @@
   <div class="modal-content">
     <div class="container">
     <div class="modal-title">
-      <h3>Add a new game</h3>
+      <h3>Edit <%=game.name%></h3>
     </div>
-    <%= simple_form_for [current_user.member.guild, game] do |f| %>
+    <%= simple_form_for(game) do |f| %>
     <%= f.input :name, label_html: { class: 'modal-label'} %>
     <%= f.input :game_banner, label_html: { class: 'modal-label'}%>
     <%= f.input :game_icon, label_html: { class: 'modal-label'} %>
@@ -13,6 +13,6 @@
       <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Cancel</button>
   <% end %>
   </div>
-  </div><!-- Your modal stuff goes here -->
+  </div>
   </div>
 </div>

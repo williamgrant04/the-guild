@@ -137,8 +137,11 @@ li {
 
   .add {
     background-color: $accent;
+    color: white;
+    font-family: $body-font;
+    font-style: normal;
     p {
-      color: black;
+      transform: skew(22deg);
     }
   }
 
@@ -149,7 +152,12 @@ li {
   .invite {
     width: 170px;
     background-color: $accent;
-    color: black;
+    p {
+      color: black;
+    }
+    &:hover {
+      background-color: white;
+    }
   }
 }
 
