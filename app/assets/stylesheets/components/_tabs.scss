@@ -154,6 +154,7 @@ li {
   .editbtn {
     color: white;
     font-family: $body-font;
+    padding: 0 30px;
     p {
       transform:skew(22deg);
     }
@@ -161,6 +162,7 @@ li {
 
   .delete {
     background-color: $tertiary;
+    padding: 0 30px;
   }
 
   .invite {
