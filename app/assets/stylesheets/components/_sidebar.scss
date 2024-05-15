@@ -20,7 +20,7 @@
 }
 
 .home-btn {
-  background-color: #712B75;
+  background-color: white;
   text-decoration: none;
   width: 90%;
   border-radius: 10px;
@@ -30,6 +30,8 @@
   transition: ease 0.5s;
   font-size: 22px;
   font-family: $body-font;
+  color: black;
+  font-weight: bold;
 
   &:hover {
     background-color: #8d4c90;
@@ -53,9 +55,11 @@
   color: $offwhite;
   font-size: 16px;
   margin: 10px 0px;
-  background-color: #712B75;
+  background-color: white;
   border-radius: 10px;
   transition: ease 0.3s;
+  color: black;
+  font-weight: bold;
 
   img {
     margin: 0px 10px;
@@ -92,7 +96,7 @@
     text-align: center;
     color: black;
     transition: ease 0.5s;
-    font-size: 16px;
+    font-size: 18px;
 
     &:hover {
       background-color: #c3873f;

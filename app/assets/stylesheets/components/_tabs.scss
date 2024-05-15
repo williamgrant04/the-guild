@@ -121,6 +121,7 @@ li {
     text-decoration: none;
     font-family: $body-font;
 
+
     p {
       text-transform: uppercase;
       transform: skew(22deg);
@@ -133,15 +134,28 @@ li {
       cursor: pointer;
     }
 
+    // .add {
+    //   background-color: $accent;
+    //   color: white;
+    //   font-family: $body-font;
+    //   font-style: normal;
+    //   width: 250px;
+    //   height: 350px;
+    //   border-radius: 16px;
+    //   overflow: hidden;
+    //   p {
+    //     transform: skew(22deg);
+    //     font-size: 500%;
+    //   }
+    // }
   }
 
-  .add {
-    background-color: $accent;
+
+  .editbtn {
     color: white;
     font-family: $body-font;
-    font-style: normal;
     p {
-      color: black;
+      transform:skew(22deg);
     }
   }
 
@@ -150,9 +164,14 @@ li {
   }
 
   .invite {
-    width: 170px;
+    width: 100px;
     background-color: $accent;
-    color: black;
+    p {
+      color: black;
+    }
+    &:hover {
+      background-color: white;
+    }
   }
 }
 

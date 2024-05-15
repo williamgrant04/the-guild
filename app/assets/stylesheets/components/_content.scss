@@ -94,16 +94,19 @@
   }
 
   .edit-member {
-    background-color: $tertiary;
+    background-color: transparent;
     border: none;
     border-radius: 8px;
-    height: 40px;
+    height: auto;
     margin-right: 10px;
-    transition: 0.3s;
+    transition: 0.5s;
+    font-size: 20px;
+    color: $tertiary;
 
     &:hover {
-      background-color: #de373c;
+      background-color: transparent;
       border-radius: 4px;
+      color: white;
     }
 
     p { margin: 0; }
