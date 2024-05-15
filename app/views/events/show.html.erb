@@ -11,6 +11,16 @@
           <p>Events</p>
         <% end %>
       </div>
+    <div class="game-buttons">
+      <div class="tabs">
+        <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
+         <p>Edit</p>
+        <% end %>
+        <%= link_to event_path(@event), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Delete this event?" }, class: "delete tab" do %>
+         <p>Delete</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="event-info">
@@ -28,6 +38,7 @@
     </div>
     <div class="event-members">
       <h2>Members attending</h2>
+      <div class="event-member-grid-container">
       <div class="event-member-grid">
         <% @event.members.each do |member| %>
         <div class="event-member-list">
@@ -36,10 +47,7 @@
         </div>
         <% end %>
       </div>
+      </div>
     </div>
   </div>
-    <div class="event-show-button d-flex">
-      <%= button_to "Edit",  edit_event_path(@event), method: :get,  class: "event-edit-button" %>
-      <%= button_to "Delete", event_path(@event), method: :delete, data: {turbo_confirm: "Delete this event?"},  class: "event-delete-button"%>
-    </div>
   </div>
