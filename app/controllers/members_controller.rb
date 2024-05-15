@@ -10,10 +10,9 @@ class MembersController < ApplicationController
     authorize @member
     @member.update(member_params)
     if @member.save
-      flash[:success] = 'member updated!'
-      redirect_to guild_path(@member.guild)
+      redirect_back(fallback_location: root_path, notice: 'Guild member updated successfully')
     else
-      render action: :edit
+      redirect_back(fallback_location: root_path, alert: 'Guild member could not be updated')
     end
   end
 

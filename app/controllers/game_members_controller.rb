@@ -12,9 +12,9 @@ class GameMembersController < ApplicationController
     # sets the member to the member with the username that was passed in the form
     @game_member.member = Member.find_by(username: params[:game_member][:member])
     if @game_member.save
-      redirect_to @game
+      redirect_back fallback_location: root_path, notice: 'Member added successfully'
     else
-      render :new, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: 'Unable to add member to game'
     end
     authorize @game_member
   end
@@ -28,9 +28,9 @@ class GameMembersController < ApplicationController
     @game_member = GameMember.find(params[:id])
     @game_member.update(game_member_params)
     if @game_member.save
-      redirect_to @game_member.game
+      redirect_back fallback_location: root_path, notice: 'Member details updated successfully'
     else
-      render :edit, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, alert: 'Unable to edit member details'
     end
     authorize @game_member
   end

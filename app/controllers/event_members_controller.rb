@@ -8,7 +8,7 @@ class EventMembersController < ApplicationController
     if @event_member.save
       redirect_back(fallback_location: @guild, notice: 'Signed up successfully')
     else
-      flash[:alert] = 'Something went wrong'
+      redirect_back(fallback_location: @guild, alert: 'Something went wrong')
     end
     authorize @event_member
   end
