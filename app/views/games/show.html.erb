@@ -15,10 +15,9 @@
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-      <button class="tab" data-action="click->display-modal#show" data-modal="edit_game" data-type="game" data-id="<%=@game.id%>">Edit Game</button>
-        <%# <%= link_to edit_game_path(@game), class: "tab" do %>
-          <%# <p>Edit</p> %>
-        <%# end %>
+        <%= link_to edit_game_path(@game), class: "tab" do %>
+          <p>Edit Game</p>
+        <% end %>
         <%= link_to game_path, data: { turbo_method: :delete, turbo_confirm: "Delete this game? This will also remove all members from this game." }, class: "delete tab" do %>
           <p>Delete Game</p>
         <% end %>
@@ -30,6 +29,7 @@
     </div>
     <% end %>
   </div>
+
   <div class="card-container">
     <div class="game-member-card-wrapper">
      <% @game_members.each do |gm| %>
@@ -37,8 +37,7 @@
           <div class="action-wrapper">
             <% if current_user.member == gm.member || current_user.member.role == "admin" %>
             <div class="edit">
-            <button class="modal-create-btn" data-action="click->display-modal#show" data-modal="edit_game_member" data-type="gamemember" data-source="game" data-id="<%=gm.id%>" data-sourceid="<%=gm.game.id%>">Edit</button>
-                <%# <%= link_to "Edit", edit_game_game_member_path(@game, gm) %>
+                <%= link_to "Edit", edit_game_game_member_path(@game, gm) %>
             </div>
             <div class="remove">
                 <%= link_to "Remove", game_game_member_path(@game, gm), data: { turbo_method: :delete, turbo_confirm: "Remove this member from the game?"} if current_user.member.role == "admin" %>

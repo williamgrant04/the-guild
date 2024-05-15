@@ -1,11 +1,12 @@
 class ModalsController < ApplicationController
   skip_after_action :verify_authorized
   def get_modal
+
     if params[:source] == "guild" && params[:type] == "event"
       render partial: "modals/#{params[:modal]}", locals: { source: Guild.find(params[:sourceid]), event: Event.new }
       return
     elsif params[:source] == "game" && (params[:type] == "event" || params[:type] == "gamemember")
-      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event: Event.new, game_member:params[:id] == "undefined" ? GameMember.new : GameMember.find(params[:id]) }
+      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event: Event.new, game_member:GameMember.new }
       return
     end
 
@@ -32,11 +33,11 @@ end
 
 # !This hash will have to be updated if we add more models
 $types = {
-  "gamemember" => GameMember,
   "event" => Event,
   "guild" => Guild,
   "game" => Game,
   "member" => Member,
   "user" => User,
-  "eventmember" => EventMember
+  "eventmember" => EventMember,
+  "gamemember" => GameMember
 }
