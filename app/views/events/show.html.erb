@@ -45,7 +45,7 @@
       <div class="event-member-grid">
         <% @event.members.each do |member| %>
         <div class="event-member-list">
-          <%= cl_image_tag member.profile_image.key, class: "member-image" %>
+          <%= cl_image_tag member.profile_image.key, class: "event-member-image" %>
           <div class="event-member-name"><%= member.username %></div>
         </div>
         <% end %>
