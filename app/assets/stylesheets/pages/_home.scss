@@ -1,30 +1,51 @@
 .our-header {
-  background-color: $primary;
+  display: flex;
+  justify-content: space-between;
+  background-color: $thegrey;
   border-bottom: 1px solid black;
   color: white;
   font-size: 1.5em;
-  text-align: center;
-  height: 10vh;
+  height: 100px;
   position: relative;
-  h1 {
-    padding-top: 1rem;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
-  .actions {
-    position: absolute;
-    right: 1rem;
-    bottom: 1.75rem;
+
+  .logo-name {
     display: flex;
     align-items: center;
+    margin-left: 16px;
+
+    img {
+      height: 80px;
+      width: 80px;
+    }
+
+    h1 {
+      margin: 0 0 0 10px;
+      font-size: 2.25rem;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+
     button {
-      background-color: $accent;
+      background-color: $tertiary;
       text-decoration: none;
       color: white;
+      font-weight: bold;
       padding: 4px 8px;
       border-radius: 8px;
       font-size: .75em;
       border: none;
       margin-right: .5rem;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #da3a3f;
+        border-radius: 4px;
+      }
     }
   }
 }
@@ -44,19 +65,22 @@
   }
 
   h2 {
-    font-size: 3em;
+    font-size: 5rem;
   }
 
   h3 {
-    font-size: 1.75em;
+    font-size: 3.75rem;
   }
 }
 
 .guild-description {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   color: white;
   padding: 2.5rem;
   text-align: center;
-  background-color: $accent;
+  background-color: $thegrey;
 
   h2 {
     font-size: 1.75em;
@@ -65,25 +89,7 @@
   p {
     font-size: 1.5em;
     margin-bottom: 0;
-  }
-}
-
-.cards
-{
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 2rem;
-  background-color: $secondary;
-  .info-card {
-    width: 30%;
-    background-color: $accent;
-    border-radius: 8px;
-    padding: 2rem 3rem 2rem 3rem;
-    text-align: center;
-    h2 {
-      margin-bottom: 1rem;
-    }
+    width: 50%;
   }
 }
 
@@ -107,7 +113,8 @@
   left: -5%;
   width: 110%;
   height: 100%;
-  box-shadow: inset 0 0 10px 20px $accent;
+  box-shadow: inset 0 0 10px 20px $thegrey;
+  backdrop-filter: blur(7px);
 }
 
 .join-banner {
@@ -115,41 +122,43 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $accent;
+  background-color: $thegrey;
   color: white;
   background-blend-mode: darken;
   padding: 60px 0;
 
   h2 {
-    font-size: 2.75rem;
+    font-size: 3rem;
   }
 
   p {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
   }
 
   button {
-    font-size: 1.75rem;
-    background-color: $primary;
+    font-size: 2.25rem;
+    background-color: $tertiary;
     text-transform: uppercase;
     color: white;
+    font-weight: bold;
     border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
+    border-radius: 16px;
+    padding: 15px 40px;
     transition: 0.3s;
 
     &:hover {
-      background-color: $hover;
-      border-radius: 4px;
+      background-color: #da3a3f;
+      border-radius: 8px;
     }
   }
 }
 
 .text-wrapper {
-  background-color: $hover;
+  z-index: 999999;
+  background-color: $secondary;
   padding: 20px 40px;
   border-radius: 8px;
-  width: 60%;
+  width: 50%;
   text-align: center;
 
   h2 {
@@ -166,7 +175,7 @@
 
 .spacer {
   height: 10vh;
-  background-color: $accent;
+  background-color: $thegrey;
 }
 
 .parallax {

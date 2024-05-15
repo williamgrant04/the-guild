@@ -16,11 +16,38 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <style>
+      body {
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: rgb(40, 40, 40);
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: rgb(60, 60, 60);
+          border-radius: 25px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: rgb(80, 80, 80);
+        }
+      }
+    </style>
   </head>
 
   <body data-controller="display-modal">
     <div class="our-header">
-      <h1>THE GUILD</h1>
+      <div class="logo-name">
+        <%= image_tag asset_path 'icon-nobg.ico', alt: "Logo" %>
+        <h1>THE GUILD</h1>
+      </div>
       <div class="actions">
         <% if current_user %>
           <% if current_user.member.guild.nil? %>
@@ -38,7 +65,7 @@
     </div>
     <div class="main-banner banner-image parallax">
       <div class="banner-text">
-        <h2>The All-in-One Place for Guilds</h2>
+        <h2>The all-in-one Place for Guilds</h2>
         <h3>Connect, Discover, Conquer</h3>
       </div>
     </div>
