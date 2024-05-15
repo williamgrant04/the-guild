@@ -29,9 +29,9 @@
   <div class="event-info">
     <div class="event-name">
         <h1><%= @event.name %></h1>
-        <p>Event description: <%= @event.description %><br>
-        Starts at: <%= @event.start.strftime("%l:%M %p, %b%e") %><br>
-        Ends at: <%= @event.end.strftime("%l:%M %p, %b%e") %></p>
+        <p><%= @event.description %><br>
+        Starts at: <%= @event.start.strftime("%l:%M %p on %b %e") %><br>
+        Ends at: <%= @event.end.strftime("%l:%M %p on %b %e") %></p>
         <% if @event.members.include?(current_user.member) %>
         <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"},class: "in-button"%>
         <% else %>
@@ -40,7 +40,7 @@
         <% end %>
     </div>
     <div class="event-members">
-      <h2>Members attending</h2>
+      <h2>Who's in?</h2>
       <div class="event-member-grid-container">
       <div class="event-member-grid">
         <% @event.members.each do |member| %>
