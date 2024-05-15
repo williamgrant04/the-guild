@@ -15,9 +15,10 @@
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-        <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
-         <p>Edit</p>
-        <% end %>
+      <button class="tab" data-action="click->display-modal#show" data-type="event" data-id="<%=@event.id%>" data-sourceid="<%=@source.id%>" data-source="<%=@source.class.to_s.downcase%>" data-modal="edit_event">Edit</button>
+        <%# <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
+         <%# <p>Edit</p> %>
+        <%# end %>
         <%= link_to event_path(@event), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Delete this event?" }, class: "delete tab" do %>
          <p>Delete</p>
         <% end %>

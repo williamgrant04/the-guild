@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   }
   resources :guilds, except: %i[destroy index] do
     resources :games, only: %i[new create]
-    resources :events, only: %i[new create index show]
+    resources :events, only: %i[new update create index show]
   end
 
-  resources :events, only: %i[edit update destroy]
+  resources :events, only: %i[destroy]
   resources :games, only: %i[edit update destroy show] do
     resources :game_members, only: %i[new create edit update destroy]
-    resources :events, only: %i[new create index show]
+    resources :events, only: %i[new create update index show]
   end
 
   resources :chatrooms, only: :show do
