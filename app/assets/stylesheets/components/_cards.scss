@@ -139,9 +139,26 @@
   align-items: center;
   justify-content: center;
 
-  a {
+  button {
     color: white;
     text-decoration: none;
+    background-color: $accent;
     cursor: pointer;
+    outline: none;
+    border: none;
+    &:hover {
+      background-color: $accent;
+      color: white;
+      outline: none;
+      border: none;
+    }
+    &:active {
+      outline: none;
+      border: none;
+    }
+    &:focus {
+      outline: none;
+      border: none;
+    }
   }
 }
