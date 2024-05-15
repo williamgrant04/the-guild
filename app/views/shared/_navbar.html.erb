@@ -1,27 +1,3 @@
-<!-- <div class="navbar" data-controller="navbar-dropdown">
-
-
-  <div class="navbar-game-name">
-    <% if @game.present? %>
-      <p><%= @game.name %></p>
-    <% elsif @source.is_a?(Game) %>
-      <p><%= @source.name %></p>
-    <% end %>
-  </div>
-
-  <div class="profile">
-    <p class="navbar-username"><%= current_user.member.username %></p>
-    <div class="dropdown">
-      <div class="nav-user-picture" data-action="click->navbar-dropdown#toggleDropdown">
-        <%= cl_image_tag(current_user.member.profile_image.key, alt: "Profile Picture", height: "40px", width: "40px") %>
-      </div>
-      <div class="dropdown-content d-none" data-navbar-dropdown-target="dropdown">
-        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Log out?" } %>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="navbar" data-controller="navbar-dropdown">
   <div class="guild-nav">
     <% if locals[:guild].id %>
