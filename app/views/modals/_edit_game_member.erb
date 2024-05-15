@@ -9,8 +9,8 @@
     <%= f.input :member_game_name, label_html: { class: 'modal-label'} %>
     <%= f.input :details, label_html: { class: 'modal-label'}%>
     <div class="modal-actions">
-      <%= f.button :submit, "Confirm", class: "modal-create-btn", method: :patch %>
-      <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Cancel</button>
+      <%= f.button :submit, "Yep", class: "modal-create-btn", method: :patch %>
+      <button id="close" class="modal-cancel-btn" data-action="click->display-modal#hide">Nope</button>
     </div>
   <% end %>
   </div><!-- Your modal stuff goes here -->
