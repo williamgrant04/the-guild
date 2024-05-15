@@ -5,6 +5,6 @@ export default class extends Controller {
   static targets = ["dropdown"]
 
   toggleDropdown() {
-    this.dropdownTarget.classList.toggle("d-none")
+    this.dropdownTarget.classList.toggle("open")
   }
 }
