@@ -38,7 +38,7 @@ class GamesController < ApplicationController
   # GET /games/:id
   def show
     @game = Game.find(params[:id])
-    @game_members = @game.game_members
+    @game_members = @game.game_members.order(created_at: :desc)
     authorize @game
   end
 

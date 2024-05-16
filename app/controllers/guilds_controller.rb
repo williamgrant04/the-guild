@@ -2,7 +2,7 @@ class GuildsController < ApplicationController
   def show
     @guild = Guild.find(params[:id])
     @games = @guild.games
-    @members = @guild.members
+    @members = @guild.members.order(created_at: :desc)
     authorize @guild
   end
 
