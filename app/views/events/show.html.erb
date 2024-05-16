@@ -15,12 +15,12 @@
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-      <button class="tab" data-action="click->display-modal#show" data-type="event" data-id="<%=@event.id%>" data-sourceid="<%=@source.id%>" data-source="<%=@source.class.to_s.downcase%>" data-modal="edit_event">Edit</button>
+      <button class="tab editbtn" data-action="click->display-modal#show" data-type="event" data-id="<%=@event.id%>" data-sourceid="<%=@source.id%>" data-source="<%=@source.class.to_s.downcase%>" data-modal="edit_event"><p><i class="fa-regular fa-pen-to-square"></i></p></button>
         <%# <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
          <%# <p>Edit</p> %>
         <%# end %>
         <%= link_to event_path(@event), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Delete this event?" }, class: "delete tab" do %>
-         <p>Delete</p>
+         <p><i class="fa-solid fa-trash-can"></i></p>
         <% end %>
       </div>
     </div>
@@ -29,16 +29,23 @@
 
   <div class="event-info">
     <div class="event-name">
+      <div class="event-info-headers d-flex">
         <h1><%= @event.name %></h1>
-        <p><%= @event.description %><br>
-        Starts at: <%= @event.start.strftime("%l:%M %p on %b %e") %><br>
-        Ends at: <%= @event.end.strftime("%l:%M %p on %b %e") %></p>
         <% if @event.members.include?(current_user.member) %>
         <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"},class: "in-button"%>
         <% else %>
           <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user },class: "out-button" %>
-        <%#= button_to "Sign up", event_members_path, params: {event: params[:id], member: current_user.member} %>
         <% end %>
+      </div>
+      <p><%= @event.start.strftime(" %b %e") %>
+      at
+      <%=@event.start.strftime("%l:%M %p")%>
+      -
+      <%= @event.end.strftime(" %b %e") %>
+      at
+      <%=@event.end.strftime("%l:%M %p")%></p>
+        <br>
+      <h3><%= @event.description %> test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test</h3>
     </div>
     <div class="event-members">
       <h2>Who's in?</h2>
