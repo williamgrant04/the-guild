@@ -3,4 +3,10 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 2s 1s;
+}
+
+.hide-flash {
+  opacity: 0;
 }
