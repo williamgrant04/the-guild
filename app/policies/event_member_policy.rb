@@ -12,6 +12,6 @@ class EventMemberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.member.guild == record.event.guild
+    create?
   end
 end
