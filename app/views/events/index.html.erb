@@ -7,7 +7,11 @@
     <% events.each do |event| %>
       <div>
         <%# <button data-action="click->display-modal#show" data-modal="show_event"><%= event.name </button>%>
-        <%= link_to event.name, guild_event_path(event.guild, event), class: "event" %>
+        <%if event.guild.nil? %>
+          <%= link_to event.name, game_event_path(event.game, event), class: "event" %>
+        <% else %>
+          <%= link_to event.name, guild_event_path(event.guild, event), class: "event" %>
+        <% end %>
       </div>
     <% end %>
   <% end %>

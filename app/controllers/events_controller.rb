@@ -82,10 +82,10 @@ class EventsController < ApplicationController
   def set_source
     if params[:game_id]
       @source = Game.find(params[:game_id])
-      @guild = Game.find(params[:game_id]).guild
+      @guild = @source.guild # Just so we don't query 3 times for no reason
     elsif params[:guild_id]
-      @guild = Guild.find(params[:guild_id])
       @source = Guild.find(params[:guild_id])
+      @guild = @source # Sidebar moment
     end
   end
 end

@@ -1,13 +1,13 @@
 <div class="main-container">
   <div class="upper-container">
       <div class="tabs">
-        <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@chatroom.game), class: "tab" do %>
+        <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@event.game), class: "tab" do %>
           <p><i class="fa-solid fa-user-group"></i> Members</p>
         <% end %>
         <%= link_to chatroom_path(@source.chatroom), class: "tab" do %>
           <p><i class="fa-solid fa-comments"></i> Chat</p>
         <% end %>
-        <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@chatroom.game), class: "tab" do %>
+        <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@event.game), class: "tab" do %>
           <p><i class="fa-solid fa-calendar-days"></i> Events</p>
         <% end %>
       </div>
@@ -15,7 +15,7 @@
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-      <button class="tab editbtn" data-action="click->display-modal#show" data-type="event" data-id="<%=@event.id%>" data-sourceid="<%=@source.id%>" data-source="<%=@source.class.to_s.downcase%>" data-modal="edit_event"><p><i class="fa-regular fa-pen-to-square"></i></p></button>
+      <button class="tab editbtn" data-action="click->display-modal#show" data-type="event" data-id="<%= @event.id %>" data-sourceid="<%= @source.id %>" data-source="<%= @source.class.to_s.downcase %>" data-modal="edit_event"><p><i class="fa-regular fa-pen-to-square"></i></p></button>
         <%# <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
          <%# <p>Edit</p> %>
         <%# end %>

@@ -7,7 +7,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    user.member.guild == record.guild
+    user.member.guild == record.guild || user.member.guild == record.game.guild
   end
 
   def new?
