@@ -1,13 +1,13 @@
 <div class="main-container">
   <div class="upper-container">
       <div class="tabs">
-        <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@chatroom.game), class: "tab" do %>
+        <%= link_to @source.is_a?(Guild) ? guild_path(@source) : game_path(@event.game), class: "tab" do %>
           <p><i class="fa-solid fa-user-group"></i> Members</p>
         <% end %>
         <%= link_to chatroom_path(@source.chatroom), class: "tab" do %>
           <p><i class="fa-solid fa-comments"></i> Chat</p>
         <% end %>
-        <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@chatroom.game), class: "tab" do %>
+        <%= link_to @source.is_a?(Guild) ? guild_events_path(@source) : game_events_path(@event.game), class: "tab" do %>
           <p><i class="fa-solid fa-calendar-days"></i> Events</p>
         <% end %>
       </div>
@@ -15,7 +15,7 @@
     <% if current_user.member.role == "admin" %>
     <div class="game-buttons">
       <div class="tabs">
-      <button class="tab editbtn" data-action="click->display-modal#show" data-type="event" data-id="<%=@event.id%>" data-sourceid="<%=@source.id%>" data-source="<%=@source.class.to_s.downcase%>" data-modal="edit_event"><p><i class="fa-regular fa-pen-to-square"></i></p></button>
+      <button class="tab editbtn" data-action="click->display-modal#show" data-type="event" data-id="<%= @event.id %>" data-sourceid="<%= @source.id %>" data-source="<%= @source.class.to_s.downcase %>" data-modal="edit_event"><p><i class="fa-regular fa-pen-to-square"></i></p></button>
         <%# <%= link_to edit_event_path(@event), method: :get, class: "tab" do %>
          <%# <p>Edit</p> %>
         <%# end %>
@@ -26,39 +26,35 @@
     </div>
     <% end %>
   </div>
+  
+  <div class="event">
+    <div class="event-details">
+      <div class="title-buttons">
+        <h2><%= @event.name %></h2>
 
-  <div class="event-info">
-    <div class="event-name">
-      <div class="event-info-headers d-flex">
-        <h1><%= @event.name %></h1>
         <% if @event.members.include?(current_user.member) %>
-        <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"},class: "in-button"%>
+          <%= button_to "I'm out!", event_member_path(params[:id]), method: :delete, data: {turbo_confirm: "Leave the event?"},class: "out-button"%>
         <% else %>
-          <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user },class: "out-button" %>
+          <%= button_to "I'm in!", event_members_path, params: { event: @event.id, member: current_user },class: "in-button" %>
         <% end %>
       </div>
-      <p><%= @event.start.strftime(" %b %e") %>
-      at
-      <%=@event.start.strftime("%l:%M %p")%>
-      -
-      <%= @event.end.strftime(" %b %e") %>
-      at
-      <%=@event.end.strftime("%l:%M %p")%></p>
-        <br>
-      <h3><%= @event.description %> test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test</h3>
+
+      <p class="event-times">
+        <%= @event.start.strftime("%b %e at %l:%M %p") %>
+        -
+        <%= @event.end.strftime("%b %e at %l:%M %p") %>
+      </p>
+
+      <p class="event-description"><%= @event.description %></p>
     </div>
+
     <div class="event-members">
-      <h2>Who's in?</h2>
-      <div class="event-member-grid-container">
-      <div class="event-member-grid">
-        <% @event.members.each do |member| %>
-        <div class="event-member-list">
-          <%= cl_image_tag member.profile_image.key, class: "event-member-image" %>
-          <div class="event-member-name"><%= member.username %></div>
+      <% @event.members.each do |member| %>
+        <div class="event-member">
+          <%= cl_image_tag member.profile_image.key %>
+          <p><%= member.username %></p>
         </div>
-        <% end %>
-      </div>
-      </div>
+      <% end %>
     </div>
   </div>
-  </div>
+</div>

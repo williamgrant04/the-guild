@@ -181,7 +181,6 @@ Game.all.each do |game|
                description: "Lets progress!",
                start: DateTime.now + 4.hours,
                end: DateTime.now + 8.hours,
-               guild: game.guild,
                game: game)
 end
 puts "Done"
