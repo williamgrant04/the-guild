@@ -12,6 +12,8 @@
   height: 87.6%; // No idea why this is happening
   padding: 20px;
   margin: 0 auto;
+  background-size: cover;
+  background-position: center;
 
   .messages {
     display: flex;
