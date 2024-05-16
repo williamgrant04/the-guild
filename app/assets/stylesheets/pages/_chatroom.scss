@@ -1,5 +1,9 @@
 .chat-container {
   background-color: $offwhite;
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('chat-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

@@ -1,11 +1,19 @@
 class ModalsController < ApplicationController
   skip_after_action :verify_authorized
   def get_modal
+    p params
+
     if params[:source] == "guild" && params[:type] == "event"
-      render partial: "modals/#{params[:modal]}", locals: { source: Guild.find(params[:sourceid]), event:params[:id] == "undefined" ?  Event.new : Event.find(params[:id]) }
+      render partial: "modals/#{params[:modal]}", locals: {
+        source: Guild.find(params[:sourceid]),
+        event:params[:id] == "undefined" ?  Event.new : Event.find(params[:id])
+      }
       return
     elsif params[:source] == "game" && (params[:type] == "event" || params[:type] == "gamemember")
-      render partial: "modals/#{params[:modal]}", locals: { source: Game.find(params[:sourceid]), event:params[:id] == "undefined" ?  Event.new : Event.find(params[:id]), game_member:params[:id] == "undefined" ? GameMember.new : GameMember.find(params[:id]) }
+      render partial: "modals/#{params[:modal]}", locals: {
+        source: Game.find(params[:sourceid]),
+        "#{params[:type]}".to_sym => params[:id] == "undefined" ? $types[params[:type]].new :  $types[params[:type]].find(params[:id])
+      }
       return
     end
 

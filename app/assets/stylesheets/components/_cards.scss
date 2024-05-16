@@ -17,19 +17,16 @@
     width: 10px;
   }
 
-  /* Track */
   &::-webkit-scrollbar-track {
     background: #613269;
     border-radius: 25px;
   }
 
-  /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: $offwhite; // Just because of the colour, not actually a hover effect
+    background: $offwhite;
     border-radius: 25px;
   }
 
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #bc6dc0;
   }
@@ -42,9 +39,8 @@
   height: 350px;
   border-radius: 16px;
   overflow: hidden;
-  // box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
-  // cursor: pointer;
   transition: 0.5s;
+
   .card-image {
     position: absolute;
     top: 0px;
@@ -56,10 +52,11 @@
     background-color: black;
     background-position: center;
     background-size: cover;
-  }
-  .card-image:hover {
+
+    &:hover {
     opacity: 0.4;
     transition: .5s;
+    }
   }
 }
 
@@ -70,6 +67,10 @@
 
 .card-details {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   bottom: 0;
   left: 0;
   background: $secondary;
@@ -85,14 +86,6 @@
     background-color: white;
     color: black;
     border-radius: 3px;
-
-    // .role-title {
-    //     font-size: 1rem;
-    //     line-height: 2.5rem;
-    //     color:
-    //     font-weight: 300;
-    //     text-align: center;
-    // }
   }
 }
 
@@ -107,7 +100,7 @@
 
   &:hover {
     opacity: 100;
-    transition: .5s;
+    transition: 0.3s;
   }
 }
 .remove {
@@ -146,20 +139,6 @@
     cursor: pointer;
     outline: none;
     border: none;
-    &:hover {
-      background-color: $accent;
-      color: white;
-      outline: none;
-      border: none;
-    }
-    &:active {
-      outline: none;
-      border: none;
-    }
-    &:focus {
-      outline: none;
-      border: none;
-    }
   }
 }
 
@@ -171,16 +150,18 @@
   overflow: hidden;
   border: 0px;
   transition: 0.3s ease;
+
   p {
     font-size: 100px;
   }
+
   &:hover {
     background-color: $secondary;
-    p {
-    }
   }
+
   &:active {
     background-color: $hover;
+
     p {
       font-size: 80px;
     }
